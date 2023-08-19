@@ -1,12 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Figtree } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const figtree = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SpotifyClone",
-  description: "learned from Antonio",
+  description:
+    "Supabase + PostgreSQL + Stripe + NextAuth email signin, learned from Antonio",
 };
 
 export default function RootLayout({
@@ -16,9 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-gray-900 text-gray-300"}>
-        {children}
-      </body>
+      <body className={figtree.className + ""}>{children}</body>
     </html>
   );
 }
