@@ -42,6 +42,6 @@ body,
     @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY flex items-center justify-center;
   }
   .btn-big {
-    @apply rounded-full  bg-BRAND border border-transparent p-3 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover-opaque;
+    @apply rounded-full  bg-BRAND border border-transparent px-6 py-2 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover-opaque;
   }
 }

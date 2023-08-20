@@ -8,7 +8,6 @@ import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast"; */
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
-import Button from "./Button";
 
 /* import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
@@ -83,45 +82,41 @@ const Header = (props: Props) => {
           <BiSearch className="text-BGCOLOR" size={20} />
         </button>
       </div>
-      <>
+      <div id="btn-big-pair" className="flex gap-x-4 items-center">
         {
-          /* user */ false ? (
-            <div className="flex gap-x-4 items-center">
+          /* user */ true ? (
+            <>
               <button
                 //   onClick={handleLogout}
-                className="btn-big bg-PRIMARY px-6 py-2"
+                className="btn-big bg-PRIMARY "
               >
                 Logout
               </button>
               <button
                 onClick={() => router.push("/account")}
-                className="btn-big bg-PRIMARY "
+                className="btn-big bg-PRIMARY p-3"
               >
                 <FaUserAlt />
               </button>
-            </div>
+            </>
           ) : (
-            <div className="flex gap-x-4 items-center">
+            <>
               <button
                 //    onClick={authModal.onOpen}
-                className=" btn-big 
-                    bg-transparent 
-                    text-PRIMARY 
-                  "
+                className=" btn-big bg-transparent text-PRIMARY"
               >
                 Sign up
               </button>
-
               <button
                 //     onClick={authModal.onOpen}
-                className="btn-big bg-PRIMARY px-6 py-2"
+                className="btn-big bg-PRIMARY"
               >
                 Log in
               </button>
-            </div>
+            </>
           )
         }
-      </>
+      </div>
     </header>
   );
 };
