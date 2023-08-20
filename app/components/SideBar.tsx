@@ -33,11 +33,8 @@ const SideBar = ({ children }: Props) => {
 
   return (
     <div className="flex h-full w-full">
-      <aside className="hidden md:flex flex-col gap-y-2 w-[400px] p-2 ">
-        <section
-          id="Home and Search"
-          className="bg-BGCOLOR-SECONDARY rounded-lg flex flex-col p-5 gap-y-4 font-semibold"
-        >
+      <aside className="hidden md:flex flex-col gap-y-2 w-[400px] p-2 text-NEUTRAL font-semibold">
+        <section id="Home and Search" className="box-within-sidebar">
           {routes.map((route) => (
             <RouteItem key={route.label} route={route} />
           ))}

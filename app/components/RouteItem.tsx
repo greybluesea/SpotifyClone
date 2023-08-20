@@ -26,7 +26,7 @@ const RouteItem = ({
         items-center 
         gap-x-5 
         cursor-pointer
-        text-NEUTRAL hover-highlight
+        hover-highlight
         ` + (active && "text-HIGHLIGHT")
       }
     >

@@ -31,6 +31,9 @@ body,
 
 @layer components {
   .hover-highlight {
-    @apply hover:text-HIGHLIGHT transition duration-200;
+    @apply hover:text-HIGHLIGHT cursor-pointer transition duration-200;
+  }
+  .box-within-sidebar {
+    @apply bg-BGCOLOR-SECONDARY rounded-lg flex flex-col p-5 gap-y-4;
   }
 }
