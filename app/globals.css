@@ -36,9 +36,12 @@ body,
   }
 
   .btn-round-black {
-    @apply rounded-full bg-BGCOLOR flex items-center justify-center;
+    @apply rounded-full text-PRIMARY bg-BGCOLOR flex items-center justify-center;
   }
   .btn-round-white {
-    @apply rounded-full p-2 bg-PRIMARY flex items-center justify-center;
+    @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY flex items-center justify-center;
+  }
+  .btn-big {
+    @apply rounded-full  bg-BRAND border border-transparent p-3 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover-opaque;
   }
 }
