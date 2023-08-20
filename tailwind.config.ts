@@ -16,6 +16,8 @@ const config: Config = {
 
         PRIMARY: "var(--PRIMARY)",
         SECONDARY: "var(--SECONDARY)",
+        NEUTRAL: "var(--NEUTRAL)",
+        HIGHLIGHT: "var(--HIGHLIGHT)",
 
         BGCOLOR: {
           DEFAULT: "var(--BGCOLOR-PRIMARY)",

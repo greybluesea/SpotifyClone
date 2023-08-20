@@ -6,8 +6,8 @@ html,
 body,
 :root {
   height: 100%;
-  background-color: rgb(24, 24, 24);
-  color: rgb(230, 230, 230);
+  background-color: var(--BGCOLOR);
+  color: var(--PRIMARY);
   color-scheme: dark;
 }
 
@@ -18,11 +18,19 @@ body,
 
     --BORDER: rgb(71, 85, 105); /*  slate-600 */
 
-    --PRIMARY: rgb(230, 230, 230); /* */
-    --SECONDARY: ; /*slate-400*/
+    --PRIMARY: rgb(230, 230, 230);
+    --SECONDARY: ;
+    --NEUTRAL: rgb(163 163 163);
+    --HIGHLIGHT: rgb(243 244 246);
 
-    --BGCOLOR-PRIMARY: rgb(15 23 42); /*slate-900  */
-    --BGCOLOR-SECONDARY: rgb(30 41 59); /*slate-800  */
-    --BGCOLOR-TERTIARY: rgb(51 65 85); /* slate-700 */
+    --BGCOLOR: rgb(24, 24, 24);
+    --BGCOLOR-SECONDARY: rgb(43, 43, 43);
+    --BGCOLOR-TERTIARY: ;
+  }
+}
+
+@layer components {
+  .hover-highlight {
+    @apply hover:text-HIGHLIGHT transition duration-200;
   }
 }
