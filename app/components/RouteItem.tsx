@@ -5,7 +5,7 @@ import { IconType } from "react-icons";
 export type Route = {
   icon: IconType;
   label: string;
-  active?: boolean;
+  active: boolean;
   href: string;
 };
 

@@ -14,18 +14,13 @@ body,
 @layer base {
   :root {
     --BRAND: rgb(34, 197, 94); /*  green-500 */
-    --BRAND-SECONDARY: ; /* sky-700 */
-
-    --BORDER: rgb(71, 85, 105); /*  slate-600 */
 
     --PRIMARY: rgb(230, 230, 230);
-    --SECONDARY: ;
     --NEUTRAL: rgb(163 163 163);
     --HIGHLIGHT: rgb(243 244 246);
 
     --BGCOLOR: rgb(24, 24, 24);
     --BGCOLOR-SECONDARY: rgb(43, 43, 43);
-    --BGCOLOR-TERTIARY: ;
   }
 }
 
