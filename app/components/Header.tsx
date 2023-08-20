@@ -8,6 +8,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast"; */
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import ListItem from "./ListItem";
 
 /* import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
@@ -37,86 +38,108 @@ const Header = (props: Props) => {
   }
  */
   return (
-    <header
-      className={
-        "bg-gradient-to-b  from-green-700 p-6 w-full h-[100px] flex items-center justify-between"
-      }
-    >
-      <div id="btn-pair-black" className="hidden md:flex gap-x-2 items-center">
-        <button
-          onClick={() => router.back()}
-          className="
+    <header className="bg-gradient-to-b  from-green-700 p-6 w-full ">
+      <div
+        id="buttons bar"
+        className={"flex items-center justify-between mb-4"}
+      >
+        <section
+          id="left-side btn-pair-black"
+          className="hidden md:flex gap-x-2 items-center"
+        >
+          <button
+            onClick={() => router.back()}
+            className="
               btn-round-black 
               hover-opaque
             "
-        >
-          <RxCaretLeft className="text-PRIMARY" size={35} />
-        </button>
-        <button
-          onClick={() => router.forward()}
-          className="
+          >
+            <RxCaretLeft className="text-PRIMARY" size={35} />
+          </button>
+          <button
+            onClick={() => router.forward()}
+            className="
               btn-round-black 
               hover-opaque 
             "
+          >
+            <RxCaretRight className="text-PRIMARY" size={35} />
+          </button>
+        </section>
+        <section
+          id="left-side btn-pair-white"
+          className="flex md:hidden gap-x-2 items-center"
         >
-          <RxCaretRight className="text-PRIMARY" size={35} />
-        </button>
-      </div>
-      <div id="btn-pair-white" className="flex md:hidden gap-x-2 items-center">
-        <button
-          onClick={() => router.push("/")}
-          className="
+          <button
+            onClick={() => router.push("/")}
+            className="
               btn-round-white 
               hover-opaque
             "
-        >
-          <HiHome className="text-BGCOLOR" size={20} />
-        </button>
-        <button
-          onClick={() => router.push("/search")}
-          className="
+          >
+            <HiHome className="text-BGCOLOR" size={20} />
+          </button>
+          <button
+            onClick={() => router.push("/search")}
+            className="
               btn-round-white
               hover-opaque
             "
+          >
+            <BiSearch className="text-BGCOLOR" size={20} />
+          </button>
+        </section>
+        <section
+          id="right-side btn-big-pair"
+          className="flex gap-x-4 items-center"
         >
-          <BiSearch className="text-BGCOLOR" size={20} />
-        </button>
+          {
+            /* user */ true ? (
+              <>
+                <button
+                  //   onClick={handleLogout}
+                  className="btn-big bg-PRIMARY "
+                >
+                  Logout
+                </button>
+                <button
+                  onClick={() => router.push("/account")}
+                  className="btn-big bg-PRIMARY p-3"
+                >
+                  <FaUserAlt />
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  //    onClick={authModal.onOpen}
+                  className=" btn-big bg-transparent text-PRIMARY"
+                >
+                  Sign up
+                </button>
+                <button
+                  //     onClick={authModal.onOpen}
+                  className="btn-big bg-PRIMARY"
+                >
+                  Log in
+                </button>
+              </>
+            )
+          }
+        </section>
       </div>
-      <div id="btn-big-pair" className="flex gap-x-4 items-center">
-        {
-          /* user */ true ? (
-            <>
-              <button
-                //   onClick={handleLogout}
-                className="btn-big bg-PRIMARY "
-              >
-                Logout
-              </button>
-              <button
-                onClick={() => router.push("/account")}
-                className="btn-big bg-PRIMARY p-3"
-              >
-                <FaUserAlt />
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                //    onClick={authModal.onOpen}
-                className=" btn-big bg-transparent text-PRIMARY"
-              >
-                Sign up
-              </button>
-              <button
-                //     onClick={authModal.onOpen}
-                className="btn-big bg-PRIMARY"
-              >
-                Log in
-              </button>
-            </>
-          )
-        }
-      </div>
+      <section id="welcome text" className="mb-2">
+        <h1
+          className="
+            text-PRIMARY 
+              text-3xl 
+              font-semibold
+            "
+        >
+          Welcome back
+        </h1>
+        {/*   <ListItem /> */}
+      </section>
     </header>
   );
 };
