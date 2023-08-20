@@ -7,7 +7,25 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        BRAND: {
+          DEFAULT: "var(--BRAND)",
+          SECONDARY: "var(--BRAND-SECONDARY)",
+        },
+
+        PRIMARY: "var(--PRIMARY)",
+        SECONDARY: "var(--SECONDARY)",
+
+        BGCOLOR: {
+          DEFAULT: "var(--BGCOLOR-PRIMARY)",
+          SECONDARY: "var(--BGCOLOR-SECONDARY)",
+          TERTIARY: "var(--BGCOLOR-TERTIARY)",
+        },
+
+        BORDER: "var(--BORDER)",
+      },
+    },
   },
   plugins: [],
 };
