@@ -19,7 +19,7 @@ body,
     --NEUTRAL: rgb(163 163 163);
     --HIGHLIGHT: rgb(243 244 246);
 
-    --BGCOLOR: rgb(24, 24, 24);
+    --BGCOLOR-PRIMARY: rgb(24, 24, 24);
     --BGCOLOR-SECONDARY: rgb(43, 43, 43);
   }
 }
@@ -30,5 +30,15 @@ body,
   }
   .box-within-sidebar {
     @apply bg-BGCOLOR-SECONDARY rounded-lg flex flex-col p-5 gap-y-4;
+  }
+  .hover-opaque {
+    @apply hover:opacity-75 cursor-pointer transition duration-200;
+  }
+
+  .btn-round-black {
+    @apply rounded-full bg-BGCOLOR flex items-center justify-center;
+  }
+  .btn-round-white {
+    @apply rounded-full p-2 bg-PRIMARY flex items-center justify-center;
   }
 }

@@ -37,81 +37,52 @@ const Header = (props: Props) => {
   }
  */
   return (
-    <div
-      className={`
-        bg-gradient-to-b 
-        from-green-700 
-        p-6
-        `}
+    <header
+      className={
+        "bg-gradient-to-b  from-green-700 p-6 w-full h-[100px] flex items-center justify-between"
+      }
     >
-      <div className="w-full mb-4 flex items-center justify-between">
-        <div className="hidden md:flex gap-x-2 items-center">
-          <button
-            //  onClick={() => router.back()}
-            className="
-              rounded-full 
-              bg-black 
-              flex 
-              items-center 
-              justify-center 
-              cursor-pointer 
-              hover:opacity-75 
-              transition
+      <div id="btn-pair-black" className="hidden md:flex gap-x-2 items-center">
+        <button
+          onClick={() => router.back()}
+          className="
+              btn-round-black 
+              hover-opaque
             "
-          >
-            <RxCaretLeft className="text-white" size={35} />
-          </button>
-          <button
-            //      onClick={() => router.forward()}
-            className="
-              rounded-full 
-              bg-black 
-              flex 
-              items-center 
-              justify-center 
-              cursor-pointer 
-              hover:opacity-75 
-              transition
+        >
+          <RxCaretLeft className="text-PRIMARY" size={35} />
+        </button>
+        <button
+          onClick={() => router.forward()}
+          className="
+              btn-round-black 
+              hover-opaque 
             "
-          >
-            <RxCaretRight className="text-white" size={35} />
-          </button>
-        </div>
-        <div className="flex md:hidden gap-x-2 items-center">
-          <button
-            ///       onClick={() => router.push('/')}
-            className="
-              rounded-full 
-              p-2 
-              bg-white 
-              flex 
-              items-center 
-              justify-center 
-              cursor-pointer 
-              hover:opacity-75 
-              transition
+        >
+          <RxCaretRight className="text-PRIMARY" size={35} />
+        </button>
+      </div>
+      <div id="btn-pair-white" className="flex md:hidden gap-x-2 items-center">
+        <button
+          onClick={() => router.push("/")}
+          className="
+              btn-round-white 
+              hover-opaque
             "
-          >
-            <HiHome className="text-black" size={20} />
-          </button>
-          <button
-            //        onClick={() => router.push('/search')}
-            className="
-              rounded-full 
-              p-2 
-              bg-white 
-              flex 
-              items-center 
-              justify-center 
-              cursor-pointer 
-              hover:opacity-75 
-              transition
+        >
+          <HiHome className="text-BGCOLOR" size={20} />
+        </button>
+        <button
+          onClick={() => router.push("/search")}
+          className="
+              btn-round-white
+              hover-opaque
             "
-          >
-            <BiSearch className="text-black" size={20} />
-          </button>
-        </div>
-        {/* <div className="flex justify-between items-center gap-x-4">
+        >
+          <BiSearch className="text-BGCOLOR" size={20} />
+        </button>
+      </div>
+      {/* <div className="flex justify-between items-center gap-x-4">
           {user ? (
             <div className="flex gap-x-4 items-center">
               <Button 
@@ -152,8 +123,7 @@ const Header = (props: Props) => {
             </>
           )}
         </div> */}
-      </div>
-    </div>
+    </header>
   );
 };
 
