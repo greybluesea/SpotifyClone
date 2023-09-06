@@ -7,11 +7,11 @@ import { BiSearch } from "react-icons/bi";
 import RouteItem, { Route } from "./RouteItem";
 import Library from "./Library";
 
-type Props = {
+/* type Props = {
   children: React.ReactNode;
-};
+}; */
 
-const SideBar = ({ children }: Props) => {
+const SideBar = (/* { children }: Props */) => {
   const pathname = usePathname();
   const routes: Route[] = useMemo(
     () => [
@@ -32,17 +32,14 @@ const SideBar = ({ children }: Props) => {
   );
 
   return (
-    <div id="wrapper" className="flex h-full w-full">
-      <aside className="hidden md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold">
-        <section id="Home and Search" className="box-within-sidebar">
-          {routes.map((route) => (
-            <RouteItem key={route.label} route={route} />
-          ))}
-        </section>
-        <Library />
-      </aside>
-      {children}
-    </div>
+    <aside className="hidden md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold">
+      <section id="Home and Search" className="box-within-sidebar">
+        {routes.map((route) => (
+          <RouteItem key={route.label} route={route} />
+        ))}
+      </section>
+      <Library />
+    </aside>
   );
 };
 

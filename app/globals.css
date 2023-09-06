@@ -41,10 +41,10 @@ body,
   }
 
   .btn-round-black {
-    @apply rounded-full text-PRIMARY bg-BGCOLOR flex items-center justify-center;
+    @apply rounded-full text-PRIMARY bg-BGCOLOR grid place-items-center;
   }
   .btn-round-white {
-    @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY flex items-center justify-center;
+    @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY grid place-items-center;
   }
   .btn-big {
     @apply rounded-full  bg-BRAND border border-transparent px-6 py-2 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover-opaque;

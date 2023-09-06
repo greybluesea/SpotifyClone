@@ -18,8 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={figtree.className + ""}>
-        <SideBar>{children}</SideBar>
+      <body className={figtree.className + " flex h-full w-full"}>
+        <SideBar />
+        {children}
       </body>
     </html>
   );

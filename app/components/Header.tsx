@@ -38,11 +38,8 @@ const Header = (props: Props) => {
   }
  */
   return (
-    <header className="bg-gradient-to-b  from-green-700 p-6 w-full ">
-      <div
-        id="buttons bar"
-        className={"flex items-center justify-between mb-4"}
-      >
+    <header className="bg-gradient-to-b  from-green-700 p-6 pb-8 space-y-4 w-full ">
+      <div id="buttons bar" className={"flex items-center justify-between"}>
         <section
           id="left-side btn-pair-black"
           className="hidden md:flex gap-x-2 items-center"
@@ -128,7 +125,7 @@ const Header = (props: Props) => {
           }
         </section>
       </div>
-      <section id="welcome text" className="mb-2">
+      <section id="welcome text">
         <h1
           className="
             text-PRIMARY 
@@ -138,7 +135,6 @@ const Header = (props: Props) => {
         >
           Welcome back
         </h1>
-        {/*   <ListItem /> */}
       </section>
     </header>
   );
