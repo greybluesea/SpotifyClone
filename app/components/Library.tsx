@@ -17,7 +17,7 @@ const Library = (props: Props) => {
         className="flex items-center justify-between font-semibold  
            "
       >
-        <div className="flex items-center gap-x-5 hover-highlight">
+        <div className="flex items-center gap-x-4 hover-text-highlight">
           <RiPlayListFill size={26} />
           <p>Your Library</p>
         </div>
@@ -25,8 +25,7 @@ const Library = (props: Props) => {
           // onClick={()=>{}}
           size={24}
           className="
-          hover-highlight
-           
+          hover-text-highlight
           "
         />
       </div>
