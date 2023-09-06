@@ -20,6 +20,7 @@ const config: Config = {
         BGCOLOR: {
           DEFAULT: "var(--BGCOLOR-PRIMARY)",
           SECONDARY: "var(--BGCOLOR-SECONDARY)",
+          HIGHLIGHT: "var(--BGCOLOR-HIGHLIGHT)",
         },
       },
     },

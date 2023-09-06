@@ -6,7 +6,7 @@ html,
 body,
 :root {
   height: 100%;
-  background-color: var(--BGCOLOR);
+  background-color: black;
   color: var(--PRIMARY);
   color-scheme: dark;
 }
@@ -21,15 +21,20 @@ body,
 
     --BGCOLOR-PRIMARY: rgb(24, 24, 24);
     --BGCOLOR-SECONDARY: rgb(43, 43, 43);
+    --BGCOLOR-HIGHLIGHT: rgb(75, 75, 75);
   }
 }
 
 @layer components {
-  .hover-highlight {
+  .hover-text-highlight {
     @apply hover:text-HIGHLIGHT cursor-pointer transition duration-200;
   }
+
+  .hover-bg-highlight {
+    @apply hover:bg-BGCOLOR-HIGHLIGHT cursor-pointer transition duration-200;
+  }
   .box-within-sidebar {
-    @apply bg-BGCOLOR-SECONDARY rounded-lg flex flex-col p-5 gap-y-4;
+    @apply bg-BGCOLOR rounded-lg flex flex-col p-5 gap-y-4;
   }
   .hover-opaque {
     @apply hover:opacity-75 cursor-pointer transition duration-200;

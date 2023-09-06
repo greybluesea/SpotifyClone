@@ -36,10 +36,9 @@ const ListItem = ({ image, name, href }: List) => {
         rounded-md 
         overflow-hidden 
         gap-x-4 
-        bg-neutral-100/10 
-        cursor-pointer 
-        hover:bg-neutral-100/20 
-        transition 
+        bg-BGCOLOR-SECONDARY 
+        hover-bg-highlight
+        
         pr-4
       "
     >
