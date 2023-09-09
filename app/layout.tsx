@@ -4,7 +4,7 @@ import { Figtree } from "next/font/google";
 import SideBar from "@/components/SideBar";
 import SupabaseProvider from "./providers/SupabaseProvider";
 import Header from "./components/Header";
-import { UserContextProvider } from "./hooks/useUserContext";
+import { UserContextProvider } from "./providers/UserContextProvider";
 
 const figtree = Figtree({ subsets: ["latin"] });
 

@@ -1,7 +1,7 @@
 "use client";
 import { User, useSessionContext, useUser } from "@supabase/auth-helpers-react";
+import { createContext, useEffect, useState } from "react";
 import { Subscription, UserDetails } from "../../types_stripe";
-import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
   accessToken: string | null;
@@ -78,14 +78,4 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
       {children}
     </UserContext.Provider>
   );
-};
-
-export const useUserContext = () => {
-  const userContext = useContext(UserContext);
-  if (userContext === undefined) {
-    throw new Error(
-      `useUserContext must be used within a UserContextProvider.`
-    );
-  }
-  return userContext;
 };
