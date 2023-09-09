@@ -11,8 +11,7 @@ const figtree = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SpotifyClone",
-  description:
-    "Supabase + PostgreSQL + Stripe + NextAuth email signin, learned from Antonio",
+  description: "Supabase + PostgreSQL + Stripe, learned from Antonio",
 };
 
 export default function RootLayout({

@@ -28,14 +28,14 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ products = [] }) => {
       {/*   <AuthModal />
       <SubscribeModal products={products} />
       <UploadModal /> */}
-      {/* <Modal
+      <Modal
         isOpen={true}
         onChange={() => {}}
         title={"test"}
         description="test"
       >
         {"test"}
-      </Modal> */}
+      </Modal>
     </>
   );
 };

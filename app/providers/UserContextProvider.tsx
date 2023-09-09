@@ -1,6 +1,6 @@
 "use client";
 import { User, useSessionContext, useUser } from "@supabase/auth-helpers-react";
-import { createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { Subscription, UserDetails } from "../../types_stripe";
 
 type UserContextType = {
@@ -15,9 +15,10 @@ export const UserContext = createContext<UserContextType | undefined>(
   undefined
 );
 
-export type Props = Record<string, any>; /* {
+export type Props = /* Record<string, any> ;*/ {
+  children: ReactNode;
   [propName: string]: any;
-} */
+};
 
 export const UserContextProvider = ({ children, ...props }: Props) => {
   const {

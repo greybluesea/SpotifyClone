@@ -59,25 +59,23 @@ const Modal = ({
         >
           <Dialog.Title
             className="
-              text-xl 
+              text-2xl 
               text-center 
               font-bold 
-              mb-4
+              mb-2
             "
           >
             {title}
           </Dialog.Title>
           <Dialog.Description
             className="
-              mb-5 
-              text-sm 
-              leading-normal 
+              mb-3 
               text-center
             "
           >
             {description}
           </Dialog.Description>
-          <div>{children}</div>
+
           <Dialog.Close asChild>
             <button
               className="
@@ -93,13 +91,13 @@ const Modal = ({
                 items-center 
                 justify-center 
                 rounded-full 
-                
               "
               aria-label="Close"
             >
               <IoMdClose size="25" />
             </button>
           </Dialog.Close>
+          <div autoFocus={true}>{children}</div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
