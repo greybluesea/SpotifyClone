@@ -6,6 +6,7 @@ import SupabaseProvider from "./providers/SupabaseProvider";
 import Header from "./components/Header";
 import { UserContextProvider } from "./providers/UserContextProvider";
 import ModalProvider from "./providers/ModalProvider";
+import ToasterProvider from "./providers/ToastProvider";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={figtree.className + " flex h-[100dvh] w-full"}>
+        <ToasterProvider />
         <SupabaseProvider>
           <UserContextProvider>
             <ModalProvider />

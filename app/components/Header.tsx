@@ -4,14 +4,15 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
-/* import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { toast } from "react-hot-toast"; */
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import ListItem from "./ListItem";
 import useOpenAuthModalStore from "@/hooks/useOpenAuthModalStore";
+import useUserContext from "@/hooks/useUserContext";
 
-/*import { useUser } from "@/hooks/useUser";
+/*
 import usePlayer from "@/hooks/usePlayer";
 
 import Button from "./Button"; */
@@ -21,24 +22,25 @@ interface Props {}
 const Header = (props: Props) => {
   const router = useRouter();
   const authModal = useOpenAuthModalStore();
+  const userContext = useUserContext();
+  // console.log(userContext);
 
-  /*   const player = usePlayer();
- 
-  
+  // const player = usePlayer();
 
   const supabaseClient = useSupabaseClient();
-  const { user } = useUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    player.reset();
-    router.refresh();
+    // player.reset();
 
     if (error) {
-      toast.error(error.message);
+      toast.error(error.message, { id: "1" });
+    } else {
+      toast.success("Logged out!", { id: "1" });
     }
-  }
- */
+    router.refresh();
+  };
+
   return (
     <header className="bg-gradient-to-b  from-green-700 p-6 pb-8 space-y-4 w-full ">
       <div id="buttons bar" className={"flex items-center justify-between"}>
@@ -92,39 +94,34 @@ const Header = (props: Props) => {
           id="right-side btn-big-pair"
           className="flex gap-x-4 items-center"
         >
-          {
-            /* user */ false ? (
-              <>
-                <button
-                  //   onClick={handleLogout}
-                  className="btn-big bg-PRIMARY "
-                >
-                  Logout
-                </button>
-                <button
-                  onClick={() => router.push("/account")}
-                  className="btn-big bg-PRIMARY p-3"
-                >
-                  <FaUserAlt />
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={authModal.openModal}
-                  className=" btn-big bg-transparent text-PRIMARY"
-                >
-                  Sign up
-                </button>
-                <button
-                  onClick={authModal.openModal}
-                  className="btn-big bg-PRIMARY"
-                >
-                  Log in
-                </button>
-              </>
-            )
-          }
+          {userContext.user ? (
+            <>
+              <button onClick={handleLogout} className="btn-big bg-PRIMARY ">
+                Logout
+              </button>
+              <button
+                onClick={() => router.push("/account")}
+                className="btn-big bg-PRIMARY p-3"
+              >
+                <FaUserAlt />
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={authModal.openModal}
+                className=" btn-big bg-transparent text-PRIMARY"
+              >
+                Sign up
+              </button>
+              <button
+                onClick={authModal.openModal}
+                className="btn-big bg-PRIMARY"
+              >
+                Log in
+              </button>
+            </>
+          )}
         </section>
       </div>
       <section id="welcome text">

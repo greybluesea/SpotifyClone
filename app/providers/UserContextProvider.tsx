@@ -3,7 +3,7 @@ import { User, useSessionContext, useUser } from "@supabase/auth-helpers-react";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { Subscription, UserDetails } from "../../types_stripe";
 
-type UserContextType = {
+export type UserContextType = {
   accessToken: string | null;
   user: User | null;
   userDetails: UserDetails | null;
