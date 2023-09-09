@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ProductWithPrice } from "../../types_stripe";
+import { ProductWithPrice } from "../../types_incl_stripe";
 import Modal from "@/components/Modal";
 
 import AuthModal from "@/components/AuthModal";
