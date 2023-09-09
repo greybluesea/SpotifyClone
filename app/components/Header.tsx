@@ -87,12 +87,12 @@ const Header = (props: Props) => {
         >
           {userContext.user ? (
             <>
-              <button onClick={handleLogout} className="btn-big bg-PRIMARY ">
+              <button onClick={handleLogout} className="btn-big ">
                 Logout
               </button>
               <button
                 onClick={() => router.push("/account")}
-                className="btn-big bg-PRIMARY p-3"
+                className="btn-big p-3"
               >
                 <FaUserAlt />
               </button>
@@ -101,14 +101,11 @@ const Header = (props: Props) => {
             <>
               <button
                 onClick={authModal.openModal}
-                className=" btn-big bg-transparent text-PRIMARY hover:bg-transparent hover:text-HIGHLIGHT"
+                className="btn-big bg-transparent text-PRIMARY font-extrabold hover:bg-transparent hover:text-white"
               >
                 Sign up
               </button>
-              <button
-                onClick={authModal.openModal}
-                className="btn-big bg-PRIMARY"
-              >
+              <button onClick={authModal.openModal} className="btn-big">
                 Log in
               </button>
             </>

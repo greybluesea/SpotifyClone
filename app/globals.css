@@ -47,6 +47,6 @@ body,
     @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY grid place-items-center hover:bg-white transition duration-200;
   }
   .btn-big {
-    @apply rounded-full bg-BRAND border border-transparent px-6 py-2 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover:bg-white transition duration-200;
+    @apply rounded-full bg-PRIMARY border border-transparent px-6 py-2 disabled:cursor-not-allowed disabled:opacity-50 text-BGCOLOR font-bold hover:bg-white transition duration-200;
   }
 }
