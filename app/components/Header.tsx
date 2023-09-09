@@ -101,7 +101,7 @@ const Header = (props: Props) => {
             <>
               <button
                 onClick={authModal.openModal}
-                className="btn-big bg-transparent text-PRIMARY font-extrabold hover:bg-transparent hover:text-white"
+                className="btn-big bg-transparent text-PRIMARY font-extrabold hover:bg-transparent hover:text-white -mr-2 sm:-mr-1 md:mr-0"
               >
                 Sign up
               </button>
