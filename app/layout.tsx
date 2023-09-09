@@ -5,6 +5,7 @@ import SideBar from "@/components/SideBar";
 import SupabaseProvider from "./providers/SupabaseProvider";
 import Header from "./components/Header";
 import { UserContextProvider } from "./providers/UserContextProvider";
+import ModalProvider from "./providers/ModalProvider";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={figtree.className + " flex h-[100dvh] w-full"}>
         <SupabaseProvider>
           <UserContextProvider>
+            <ModalProvider />
             <SideBar />
             <section
               className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
