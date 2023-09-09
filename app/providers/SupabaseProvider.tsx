@@ -2,6 +2,7 @@
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import React, { ReactNode, useState } from "react";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { Database } from "../../type_Database";
 
 type Props = {
   children: ReactNode;
