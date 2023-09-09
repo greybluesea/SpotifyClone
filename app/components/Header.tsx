@@ -71,28 +71,19 @@ const Header = (props: Props) => {
           id="left-side btn-pair-white"
           className="flex md:hidden gap-x-2 items-center"
         >
-          <button
-            onClick={() => router.push("/")}
-            className="
-              btn-round-white 
-              hover-opaque
-            "
-          >
+          <button onClick={() => router.push("/")} className="btn-round-white">
             <HiHome className="text-BGCOLOR" size={20} />
           </button>
           <button
             onClick={() => router.push("/search")}
-            className="
-              btn-round-white
-              hover-opaque
-            "
+            className="btn-round-white"
           >
             <BiSearch className="text-BGCOLOR" size={20} />
           </button>
         </section>
         <section
           id="right-side btn-big-pair"
-          className="flex gap-x-4 items-center"
+          className="flex gap-x-2 sm:gap-x-3 md:gap-x-4 items-center"
         >
           {userContext.user ? (
             <>
@@ -110,7 +101,7 @@ const Header = (props: Props) => {
             <>
               <button
                 onClick={authModal.openModal}
-                className=" btn-big bg-transparent text-PRIMARY"
+                className=" btn-big bg-transparent text-PRIMARY hover:bg-transparent hover:text-HIGHLIGHT"
               >
                 Sign up
               </button>
