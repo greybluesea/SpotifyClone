@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { ProductWithPrice } from "../../types_stripe";
 import Modal from "@/components/Modal";
 
-/* import AuthModal from "@/components/AuthModal";
-import SubscribeModal from "@/components/SubscribeModal";
+import AuthModal from "@/components/AuthModal";
+/* import SubscribeModal from "@/components/SubscribeModal";
 import UploadModal from "@/components/UploadModal";*/
 
 interface ModalProviderProps {
@@ -25,17 +25,17 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ products = [] }) => {
 
   return (
     <>
-      {/*   <AuthModal />
-      <SubscribeModal products={products} />
+      <AuthModal />
+      {/* <SubscribeModal products={products} />
       <UploadModal /> */}
-      <Modal
+      {/*  <Modal
         isOpen={true}
         onChange={() => {}}
         title={"test"}
         description="test"
       >
         {"test"}
-      </Modal>
+      </Modal> */}
     </>
   );
 };

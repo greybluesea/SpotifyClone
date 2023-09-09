@@ -9,9 +9,9 @@ import { toast } from "react-hot-toast"; */
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import ListItem from "./ListItem";
+import useOpenAuthModalStore from "@/hooks/useOpenAuthModalStore";
 
-/* import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
+/*import { useUser } from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 
 import Button from "./Button"; */
@@ -20,9 +20,11 @@ interface Props {}
 
 const Header = (props: Props) => {
   const router = useRouter();
+  const authModal = useOpenAuthModalStore();
+
   /*   const player = usePlayer();
  
-  const authModal = useAuthModal();
+  
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -91,7 +93,7 @@ const Header = (props: Props) => {
           className="flex gap-x-4 items-center"
         >
           {
-            /* user */ true ? (
+            /* user */ false ? (
               <>
                 <button
                   //   onClick={handleLogout}
@@ -109,13 +111,13 @@ const Header = (props: Props) => {
             ) : (
               <>
                 <button
-                  //    onClick={authModal.onOpen}
+                  onClick={authModal.openModal}
                   className=" btn-big bg-transparent text-PRIMARY"
                 >
                   Sign up
                 </button>
                 <button
-                  //     onClick={authModal.onOpen}
+                  onClick={authModal.openModal}
                   className="btn-big bg-PRIMARY"
                 >
                   Log in
