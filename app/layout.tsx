@@ -4,6 +4,7 @@ import { Figtree } from "next/font/google";
 import SideBar from "@/components/SideBar";
 import SupabaseProvider from "./providers/SupabaseProvider";
 import Header from "./components/Header";
+import { UserContextProvider } from "./hooks/useUserContext";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -20,16 +21,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={figtree.className + " flex h-full w-full"}>
+      <body className={figtree.className + " flex h-[100dvh] w-full"}>
         <SupabaseProvider>
-          <SideBar />
-          <section
-            className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
+          <UserContextProvider>
+            <SideBar />
+            <section
+              className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
     overflow-y-auto "
-          >
-            <Header />
-            {children}
-          </section>
+            >
+              <Header />
+              {children}
+            </section>
+          </UserContextProvider>
         </SupabaseProvider>
       </body>
     </html>
