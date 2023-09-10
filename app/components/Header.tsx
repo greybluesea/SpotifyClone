@@ -107,7 +107,7 @@ const Header = (props: Props) => {
             "
         >
           {user
-            ? "Welcome back, " + user.email
+            ? "Welcome back" + (user.email && ", " + user.email)
             : "Please sign in to enjoy music"}
         </h1>
       </section>
