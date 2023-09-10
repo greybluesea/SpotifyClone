@@ -11,9 +11,8 @@ const PlayButton = (props: Props) => {
       duration-200
       opacity-0 
       rounded-full 
-      flex 
-      items-center 
-      justify-center 
+      grid 
+      place-items-center 
       bg-BRAND 
       p-4 
       drop-shadow-md 
