@@ -106,9 +106,15 @@ const Header = (props: Props) => {
               font-semibold
             "
         >
-          {user
-            ? "Welcome back" + (user.email && ", " + user.email)
-            : "Please sign in to enjoy music"}
+          {user ? (
+            <>
+              <span>Welcome back</span>
+              <span>{user.email && ", "}</span>
+              <span className="text-2xl">{user.email}</span>
+            </>
+          ) : (
+            "Please sign in to enjoy music"
+          )}
         </h1>
       </section>
     </header>
