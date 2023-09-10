@@ -22,13 +22,11 @@ const PageContent = ({ songs }: PageContentProps) => {
         w-full
         h-full
         grid 
-        grid-cols-1 
-        sm:grid-cols-2 
-        md:grid-cols-3 
-        lg:grid-cols-4 
-        xl:grid-cols-5 
-        2xl:grid-cols-8 
-        gap-4 
+        grid-cols-auto
+        gap-1
+        sm:gap-2
+        md:gap-3
+        lg:gap-4 
       "
     >
       {songs.map((song) => (

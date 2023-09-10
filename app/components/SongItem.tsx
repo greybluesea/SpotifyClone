@@ -17,10 +17,11 @@ const SongItem = ({ song }: { song: Song }) => {
     <div
       onClick={() => {}}
       className="
+        min-w-[150px]
+        max-w-[250px]
         group 
         rounded-md 
         overflow-hidden 
-        gap-x-4 
         bg-BGCOLOR-SECONDARY 
         cursor-pointer 
         hover:bg-BGCOLOR-HIGHLIGHT 
