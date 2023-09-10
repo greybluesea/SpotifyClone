@@ -6,10 +6,10 @@ interface OpenAuthModalStore {
   closeModal: () => void;
 }
 
-const useOpenAuthModalStore = create<OpenAuthModalStore>((set) => ({
+const useAuthModal = create<OpenAuthModalStore>((set) => ({
   isOpen: false,
   openModal: () => set({ isOpen: true }),
   closeModal: () => set({ isOpen: false }),
 }));
 
-export default useOpenAuthModalStore;
+export default useAuthModal;

@@ -1,24 +1,24 @@
 import Stripe from "stripe";
 
-export interface Song {
+export type Song = {
   id: string;
   user_id: string;
   author: string;
   title: string;
   song_path: string;
   image_path: string;
-}
+};
 
-export interface Product {
+export type Product = {
   id: string;
   active?: boolean;
   name?: string;
   description?: string;
   image?: string;
   metadata?: Stripe.Metadata;
-}
+};
 
-export interface Price {
+export type Price = {
   id: string;
   product_id?: string;
   active?: boolean;
@@ -31,14 +31,14 @@ export interface Price {
   trial_period_days?: number | null;
   metadata?: Stripe.Metadata;
   products?: Product;
-}
+};
 
-export interface Customer {
+export type Customer = {
   id: string;
   stripe_customer_id?: string;
-}
+};
 
-export interface UserDetails {
+export type UserDetails = {
   id: string;
   first_name: string;
   last_name: string;
@@ -47,13 +47,13 @@ export interface UserDetails {
   avatar_url?: string;
   billing_address?: Stripe.Address;
   payment_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
-}
+};
 
-export interface ProductWithPrice extends Product {
+export type ProductWithPrice = Product & {
   prices?: Price[];
-}
+};
 
-export interface Subscription {
+export type Subscription = {
   id: string;
   user_id: string;
   status?: Stripe.Subscription.Status;
@@ -70,4 +70,4 @@ export interface Subscription {
   trial_start?: string;
   trial_end?: string;
   prices?: Price;
-}
+};

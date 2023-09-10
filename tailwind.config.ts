@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         BRAND: {
           DEFAULT: "var(--BRAND)",
+          SECONDARY: "var(--BRAND-SECONDARY)",
         },
 
         PRIMARY: "var(--PRIMARY)",

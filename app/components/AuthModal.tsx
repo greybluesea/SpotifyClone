@@ -10,13 +10,13 @@ import {
 import { useRouter } from "next/navigation";
 
 import Modal from "./Modal";
-import useOpenAuthModalStore from "@/hooks/useOpenAuthModalStore";
+import useAuthModal from "@/hooks/useAuthModal";
 
 const AuthModal = () => {
   const { session } = useSessionContext();
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
-  const { isOpen, closeModal } = useOpenAuthModalStore();
+  const { isOpen, closeModal } = useAuthModal();
 
   useEffect(() => {
     if (session) {

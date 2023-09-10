@@ -1,12 +1,27 @@
 "use client";
 
+import useAuthModal from "@/hooks/useAuthModal";
+import useUploadModal from "@/hooks/useUploadModal";
+import useUserContext from "@/hooks/useUserContext";
 import React from "react";
+import toast from "react-hot-toast";
 import { HiPlus } from "react-icons/hi";
 import { RiPlayListFill } from "react-icons/ri";
 
 type Props = {};
 
 const Library = (props: Props) => {
+  const authModal = useAuthModal();
+  const uploadModal = useUploadModal();
+  const userContext = useUserContext();
+
+  const handleClick = () => {
+    if (!userContext.user) {
+      toast.success("please log in to add songs");
+      authModal.openModal();
+    } else uploadModal.openModal();
+  };
+
   return (
     <section
       id="Library"
@@ -22,7 +37,7 @@ const Library = (props: Props) => {
           <p>Your Library</p>
         </div>
         <HiPlus
-          // onClick={()=>{}}
+          onClick={handleClick}
           size={24}
           className="
           hover-text-highlight

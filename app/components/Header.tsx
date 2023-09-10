@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import ListItem from "./ListItem";
-import useOpenAuthModalStore from "@/hooks/useOpenAuthModalStore";
+import useAuthModal from "@/hooks/useAuthModal";
 import useUserContext from "@/hooks/useUserContext";
 
 /*
@@ -21,7 +21,7 @@ interface Props {}
 
 const Header = (props: Props) => {
   const router = useRouter();
-  const authModal = useOpenAuthModalStore();
+  const authModal = useAuthModal();
   const userContext = useUserContext();
   // console.log(userContext);
 
