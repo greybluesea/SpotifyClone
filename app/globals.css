@@ -41,7 +41,7 @@ body,
   }
 
   .btn-round-black {
-    @apply rounded-full text-PRIMARY bg-BGCOLOR grid place-items-center;
+    @apply rounded-full text-PRIMARY bg-BGCOLOR grid place-items-center hover:text-white hover:bg-BGCOLOR-HIGHLIGHT transition duration-200;
   }
   .btn-round-white {
     @apply rounded-full p-2 text-BGCOLOR bg-PRIMARY grid place-items-center hover:bg-white transition duration-200;

@@ -48,22 +48,10 @@ const Header = (props: Props) => {
           id="left-side btn-pair-black"
           className="hidden md:flex gap-x-2 items-center"
         >
-          <button
-            onClick={() => router.back()}
-            className="
-              btn-round-black 
-              hover-opaque
-            "
-          >
+          <button onClick={() => router.back()} className="btn-round-black">
             <RxCaretLeft className="text-PRIMARY" size={35} />
           </button>
-          <button
-            onClick={() => router.forward()}
-            className="
-              btn-round-black 
-              hover-opaque 
-            "
-          >
+          <button onClick={() => router.forward()} className="btn-round-black ">
             <RxCaretRight className="text-PRIMARY" size={35} />
           </button>
         </section>
