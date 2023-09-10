@@ -4,13 +4,12 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import ListItem from "./ListItem";
 import useAuthModal from "@/hooks/useAuthModal";
-import useUserContext from "@/hooks/useUserContext";
 
 /*
 import usePlayer from "@/hooks/usePlayer";
@@ -22,8 +21,7 @@ interface Props {}
 const Header = (props: Props) => {
   const router = useRouter();
   const authModal = useAuthModal();
-  const userContext = useUserContext();
-  // console.log(userContext);
+  const user = useUser();
 
   // const player = usePlayer();
 
@@ -73,7 +71,7 @@ const Header = (props: Props) => {
           id="right-side btn-big-pair"
           className="flex gap-x-2 sm:gap-x-3 md:gap-x-4 items-center"
         >
-          {userContext.user ? (
+          {user ? (
             <>
               <button onClick={handleLogout} className="btn-big ">
                 Logout
@@ -108,7 +106,9 @@ const Header = (props: Props) => {
               font-semibold
             "
         >
-          Welcome back
+          {user
+            ? "Welcome back, " + user.email
+            : "Please sign in to enjoy music"}
         </h1>
       </section>
     </header>
