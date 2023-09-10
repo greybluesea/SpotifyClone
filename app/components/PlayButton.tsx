@@ -8,6 +8,7 @@ const PlayButton = (props: Props) => {
     <button
       className="
       transition 
+      duration-200
       opacity-0 
       rounded-full 
       flex 
@@ -22,25 +23,6 @@ const PlayButton = (props: Props) => {
     >
       <FaPlay className="text-BGCOLOR" />
     </button>
-    /*     <div
-      className="
-          absolute 
-          transition 
-          opacity-0 
-          rounded-full 
-          flex 
-          items-center 
-          justify-center 
-          bg-BRAND 
-          p-4 
-          drop-shadow-md 
-          right-5
-          group-hover:opacity-100 
-          hover:scale-110
-        "
-    >
-      <FaPlay className="text-BGCOLOR" />
-    </div> */
   );
 };
 

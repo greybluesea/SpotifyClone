@@ -1,5 +1,5 @@
 "use client";
-import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { ReactNode, useState } from "react";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { Database } from "../../type_Database";
@@ -9,9 +9,11 @@ type Props = {
 };
 
 const SupabaseProvider = ({ children }: Props) => {
-  const [supabaseClient] = useState(() => createPagesBrowserClient<Database>());
+  const [supabaseClientComponentClient] = useState(() =>
+    createClientComponentClient<Database>()
+  );
   return (
-    <SessionContextProvider supabaseClient={supabaseClient}>
+    <SessionContextProvider supabaseClient={supabaseClientComponentClient}>
       {children}
     </SessionContextProvider>
   );

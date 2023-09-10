@@ -17,28 +17,23 @@ const SongItem = ({ song }: { song: Song }) => {
     <div
       onClick={() => {}}
       className="
-        relative 
         group 
-        flex 
-        flex-col 
-        items-center 
-        justify-center 
         rounded-md 
         overflow-hidden 
         gap-x-4 
-        bg-neutral-400/5 
+        bg-BGCOLOR-SECONDARY 
         cursor-pointer 
-        hover:bg-neutral-400/10 
+        hover:bg-BGCOLOR-HIGHLIGHT 
         transition 
+        duration-200
         p-3
       "
     >
       <div
         className="
-          relative 
-          aspect-square 
+          relative
           w-full
-          h-full 
+          aspect-square
           rounded-md 
           overflow-hidden
         "
@@ -49,29 +44,19 @@ const SongItem = ({ song }: { song: Song }) => {
           fill
           alt="Image"
         />
-      </div>
-      <div className="flex flex-col items-start w-full pt-4 gap-y-1">
-        <p className="font-semibold truncate w-full">{song.title}</p>
-        <p
+        <div
           className="
-            text-neutral-400 
-            text-sm 
-            pb-4 
-            w-full 
-            truncate
-          "
-        >
-          By {song.author}
-        </p>
-      </div>
-      <div
-        className="
           absolute 
-          bottom-24 
+          bottom-5
           right-5
         "
-      >
-        <PlayButton />
+        >
+          <PlayButton />
+        </div>
+      </div>
+      <div className="py-4 space-y-1">
+        <p className="font-semibold truncate w-full">{song.title}</p>
+        <p className="text-NEUTRAL text-sm w-full truncate">By {song.author}</p>
       </div>
     </div>
   );

@@ -99,8 +99,8 @@ const UploadModal = () => {
           user_id: user.id,
           title: values.title,
           author: values.author,
-          image_path: songInStorage.path,
-          song_path: imageInStorage.path,
+          image_path: imageInStorage.path,
+          song_path: songInStorage.path,
         });
 
       if (songInDatabaseError) {
