@@ -17,8 +17,6 @@ const SongItem = ({ song }: { song: Song }) => {
     <div
       onClick={() => {}}
       className="
-        min-w-[150px]
-        max-w-[250px]
         group 
         rounded-md 
         overflow-hidden 
