@@ -75,7 +75,7 @@ const UploadModal = () => {
         return toast.error("Failed uploading song");
       }
 
-      console.log(songInStorage);
+      // console.log(songInStorage);
 
       // Upload image
       const { data: imageInStorage, error: imageInStorageError } =
@@ -91,7 +91,7 @@ const UploadModal = () => {
         return toast.error("Failed uploading image");
       }
 
-      console.log(imageInStorage);
+      //  console.log(imageInStorage);
 
       // Create record
       const { data: songInDatabase, error: songInDatabaseError } =
@@ -106,7 +106,7 @@ const UploadModal = () => {
       if (songInDatabaseError) {
         return toast.error(songInDatabaseError.message);
       } else {
-        console.log(songInDatabase);
+        //   console.log(songInDatabase);
 
         router.refresh();
         toast.success("Song added!");
@@ -132,6 +132,7 @@ const UploadModal = () => {
           disabled={isLoading}
           {...register("title", { required: true })}
           placeholder="Song title"
+          autoFocus
         />
         <Input
           id="author"

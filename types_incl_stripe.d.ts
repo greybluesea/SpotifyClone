@@ -1,7 +1,8 @@
 import Stripe from "stripe";
 
 export type Song = {
-  id: string;
+  id: number;
+  created_at: Date;
   user_id: string;
   author: string;
   title: string;
