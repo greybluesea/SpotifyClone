@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 
 type ModalProps = {
   isOpen: boolean;
-  closeModal: () => void;
+  onClose: () => void;
   title: string;
   description: string;
   children: React.ReactNode;
@@ -12,13 +12,13 @@ type ModalProps = {
 
 const Modal = ({
   isOpen,
-  closeModal,
+  onClose,
   title,
   description,
   children,
 }: ModalProps) => {
   return (
-    <Dialog.Root open={isOpen} onOpenChange={closeModal} modal>
+    <Dialog.Root open={isOpen} onOpenChange={onClose} modal>
       <Dialog.Portal>
         <Dialog.Overlay
           className="

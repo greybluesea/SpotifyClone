@@ -30,7 +30,7 @@ const AuthModal = () => {
       title="Welcome back"
       description="Login to your account."
       isOpen={isOpen}
-      closeModal={closeModal}
+      onClose={closeModal}
     >
       <Auth
         supabaseClient={supabaseClient}

@@ -42,11 +42,9 @@ const UploadModal = () => {
     },
   });
 
-  const onChange = (open: boolean) => {
-    if (!open) {
-      reset();
-      closeModal();
-    }
+  const handleClose = () => {
+    reset();
+    closeModal();
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
@@ -64,20 +62,23 @@ const UploadModal = () => {
       const uniqueID = uniqid();
 
       // Upload song
-      const { data: songData, error: songError } = await supabaseClient.storage
-        .from("songs")
-        .upload(`song-${values.title}-${uniqueID}`, songFile, {
-          cacheControl: "3600",
-          upsert: false,
-        });
+      const { data: songInStorage, error: songInStorageError } =
+        await supabaseClient.storage
+          .from("songs")
+          .upload(`song-${values.title}-${uniqueID}`, songFile, {
+            cacheControl: "3600",
+            upsert: false,
+          });
 
-      if (songError) {
+      if (songInStorageError) {
         setIsLoading(false);
-        return toast.error("Failed song upload");
+        return toast.error("Failed uploading song");
       }
 
+      console.log(songInStorage);
+
       // Upload image
-      const { data: imageData, error: imageError } =
+      const { data: imageInStorage, error: imageInStorageError } =
         await supabaseClient.storage
           .from("images")
           .upload(`image-${values.title}-${uniqueID}`, imageFile, {
@@ -85,31 +86,33 @@ const UploadModal = () => {
             upsert: false,
           });
 
-      if (imageError) {
+      if (imageInStorageError) {
         setIsLoading(false);
-        return toast.error("Failed image upload");
+        return toast.error("Failed uploading image");
       }
 
+      console.log(imageInStorage);
+
       // Create record
-      const { error: supabaseError } = await supabaseClient
-        .from("songs")
-        .insert({
+      const { data: songInDatabase, error: songInDatabaseError } =
+        await supabaseClient.from("songs").insert({
           user_id: user.id,
           title: values.title,
           author: values.author,
-          image_path: imageData.path,
-          song_path: songData.path,
+          image_path: songInStorage.path,
+          song_path: imageInStorage.path,
         });
 
-      if (supabaseError) {
-        return toast.error(supabaseError.message);
-      }
+      if (songInDatabaseError) {
+        return toast.error(songInDatabaseError.message);
+      } else {
+        console.log(songInDatabase);
 
-      router.refresh();
-      setIsLoading(false);
-      toast.success("Song created!");
-      reset();
-      closeModal();
+        router.refresh();
+        toast.success("Song added!");
+        reset();
+        closeModal();
+      }
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -121,7 +124,7 @@ const UploadModal = () => {
       title="Add a song"
       description="Upload an mp3 file"
       isOpen={isOpen}
-      closeModal={closeModal}
+      onClose={handleClose}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
         <Input
@@ -159,7 +162,7 @@ const UploadModal = () => {
           />
         </div>
         <Button disabled={isLoading || !isValid} type="submit">
-          Create
+          Add song
         </Button>
       </form>
     </Modal>
