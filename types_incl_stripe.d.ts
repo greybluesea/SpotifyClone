@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 
 export type Song = {
-  id: number;
+  id: string;
   created_at: Date;
   user_id: string;
   author: string;

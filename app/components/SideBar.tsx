@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome, AiOutlineHeart } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import RouteItem, { Route } from "./RouteItem";
 import YourUploads from "./YourUploads";
@@ -20,13 +20,20 @@ const SideBar = ({ songs }: Props) => {
         icon: AiFillHome,
         label: "Home",
         href: "/",
-        active: pathname !== "/search",
+        active:
+          pathname.indexOf("search") === -1 && pathname.indexOf("liked") === -1,
       },
       {
         icon: BiSearch,
         label: "Search",
         href: "/search",
-        active: pathname === "/search",
+        active: pathname.indexOf("search") !== -1,
+      },
+      {
+        icon: AiOutlineHeart,
+        label: "Liked Songs",
+        href: "/liked",
+        active: pathname.indexOf("liked") !== -1,
       },
     ],
     [pathname]

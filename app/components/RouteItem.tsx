@@ -1,3 +1,4 @@
+import { useUser } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons";
@@ -16,6 +17,9 @@ type Props = {
 const RouteItem = ({
   route: { icon: Icon, label, active = true, href },
 }: Props) => {
+  const user = useUser();
+  if (!user && label === "Liked Songs") return null;
+
   return (
     <Link
       href={href}

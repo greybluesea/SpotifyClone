@@ -115,6 +115,10 @@ const Header = (props: Props) => {
               <p>
                 Search <span className="text-xl"> by Keyword in Title</span>
               </p>
+            ) : pathname.indexOf("liked") !== -1 ? (
+              <>
+                <span>Liked Songs</span>
+              </>
             ) : (
               <>
                 <span>Welcome back</span>
@@ -123,7 +127,12 @@ const Header = (props: Props) => {
               </>
             )
           ) : (
-            "Please sign in to enjoy music"
+            <>
+              <span>Sign in </span>
+              <span className="text-xl">to upload, </span>
+              <span>Subscribe </span>
+              <span className="text-xl">to enjoy others music</span>
+            </>
           )}
         </h1>
       </section>

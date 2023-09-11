@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Song } from "../../types_incl_stripe";
 import useImageUrl from "@/hooks/useImageUrl";
 import PlayButton from "./PlayButton";
+import LikeButton from "./LikeButton";
 
 /* interface SongItemProps {
   song: Song;
@@ -53,9 +54,14 @@ const SongItem = ({ song }: { song: Song }) => {
           <PlayButton />
         </div>
       </div>
-      <div className="py-4 space-y-1">
-        <p className="font-semibold truncate w-full">{song.title}</p>
-        <p className="text-NEUTRAL text-sm w-full truncate">By {song.author}</p>
+      <div className="flex justify-between">
+        <div className="py-4 space-y-1">
+          <p className="font-semibold truncate w-full">{song.title}</p>
+          <p className="text-NEUTRAL text-sm w-full truncate">
+            By {song.author}
+          </p>
+        </div>
+        <LikeButton songId={song.id} />
       </div>
     </div>
   );
