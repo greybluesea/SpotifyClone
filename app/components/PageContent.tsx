@@ -17,7 +17,7 @@ const PageContent = ({ songs }: PageContentProps) => {
   }
 
   return (
-    <main
+    <div
       className="
         w-full
         h-full
@@ -43,7 +43,7 @@ const PageContent = ({ songs }: PageContentProps) => {
           song={song}
         />
       ))}
-    </main>
+    </div>
   );
 };
 

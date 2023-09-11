@@ -9,9 +9,9 @@ export const revalidate = 0;
 export default async function Home() {
   const songs = await getSongs();
   return (
-    <div className="p-5 space-y-4">
+    <main className="p-5 space-y-4">
       {/* <ListItem /> */}
       <PageContent songs={songs} />
-    </div>
+    </main>
   );
 }

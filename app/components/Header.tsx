@@ -2,7 +2,7 @@
 
 import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { toast } from "react-hot-toast";
@@ -22,6 +22,7 @@ const Header = (props: Props) => {
   const router = useRouter();
   const authModal = useAuthModal();
   const user = useUser();
+  const pathname = usePathname();
 
   // const player = usePlayer();
 
@@ -110,11 +111,15 @@ const Header = (props: Props) => {
             "
         >
           {user ? (
-            <>
-              <span>Welcome back</span>
-              <span>{user.email && ", "}</span>
-              <span className="text-2xl">{user.email}</span>
-            </>
+            pathname.indexOf("search") !== -1 ? (
+              <div>Search by Keyword in Title</div>
+            ) : (
+              <>
+                <span>Welcome back</span>
+                <span>{user.email && ", "}</span>
+                <span className="text-2xl">{user.email}</span>
+              </>
+            )
           ) : (
             "Please sign in to enjoy music"
           )}

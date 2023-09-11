@@ -111,7 +111,7 @@ const UploadModal = () => {
         setTimeout(() => {
           router.refresh();
         }, 1500);
-        toast.success("Song added!");
+        toast.success("Song uploaded!");
         reset();
         closeModal();
       }
