@@ -6,7 +6,7 @@ import useUserContext from "@/hooks/useUserContext";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { HiPlus } from "react-icons/hi";
+import { BiSolidCloudUpload } from "react-icons/bi";
 import { RiPlayListFill } from "react-icons/ri";
 import { Song } from "../../types_incl_stripe";
 
@@ -56,13 +56,18 @@ const YourUploads = (/* { children }: Props */) => {
         className="flex items-center justify-between font-semibold  
            "
       >
-        <div className="flex items-center gap-x-4 hover-text-highlight">
+        <div
+          className={
+            "flex items-center gap-x-4 " +
+            (userContext?.user && " text-PRIMARY")
+          }
+        >
           <RiPlayListFill size={26} />
           <p>Your Uploads</p>
         </div>
-        <HiPlus
+        <BiSolidCloudUpload
           onClick={handleClick}
-          size={24}
+          size={34}
           className="
           hover-text-highlight
           "
