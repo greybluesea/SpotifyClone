@@ -36,7 +36,7 @@ const YourUploads = (/* { children }: Props */) => {
   };
 
   useEffect(() => {
-    fetchSongsByUserId(userContext?.user?.id);
+    userContext?.user ? fetchSongsByUserId(userContext.user.id) : setSongs([]);
   }, [userContext.user]);
 
   const handleClick = () => {
