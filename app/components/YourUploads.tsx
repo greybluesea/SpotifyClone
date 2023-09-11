@@ -11,13 +11,15 @@ import { RiPlayListFill } from "react-icons/ri";
 import { Song } from "../../types_incl_stripe";
 import UploadItem from "./UploadItem";
 
-/* type Props = { children: React.ReactNode }; */
+type Props = {
+  songs: Song[];
+};
 
-const YourUploads = (/* { children }: Props */) => {
+const YourUploads = ({ songs }: Props) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const userContext = useUserContext();
-  const supabaseClient = useSupabaseClient();
+  /* const supabaseClient = useSupabaseClient();
   const [songs, setSongs] = useState([] as Song[]);
 
   const fetchSongsByUserId = async (id: string | undefined) => {
@@ -38,7 +40,7 @@ const YourUploads = (/* { children }: Props */) => {
 
   useEffect(() => {
     userContext?.user ? fetchSongsByUserId(userContext.user.id) : setSongs([]);
-  }, [userContext.user]);
+  }, [userContext.user]); */
 
   const handleClick = () => {
     if (!userContext.user) {

@@ -21,7 +21,7 @@ const UploadItem = ({ song }: { song: Song }) => {
   }; */
 
   return (
-    <button
+    <div
       //   onClick={handleClick}
       className="
         flex 
@@ -63,7 +63,7 @@ const UploadItem = ({ song }: { song: Song }) => {
         <p className="text-PRIMARY truncate">{song.title}</p>
         <p className="text-NEUTRAL text-sm truncate">By {song.author}</p>
       </div>
-    </button>
+    </div>
   );
 };
 

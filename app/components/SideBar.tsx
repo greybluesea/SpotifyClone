@@ -6,12 +6,13 @@ import { AiFillHome } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import RouteItem, { Route } from "./RouteItem";
 import YourUploads from "./YourUploads";
+import { Song } from "../../types_incl_stripe";
 
-/* type Props = {
-  children: React.ReactNode;
-}; */
+type Props = {
+  songs: Song[];
+};
 
-const SideBar = (/* { children }: Props */) => {
+const SideBar = ({ songs }: Props) => {
   const pathname = usePathname();
   const routes: Route[] = useMemo(
     () => [
@@ -38,7 +39,7 @@ const SideBar = (/* { children }: Props */) => {
           <RouteItem key={route.label} route={route} />
         ))}
       </section>
-      <YourUploads />
+      <YourUploads songs={songs} />
     </aside>
   );
 };

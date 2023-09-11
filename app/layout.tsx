@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import { UserContextProvider } from "./providers/UserContextProvider";
 import ModalProvider from "./providers/ModalProvider";
 import ToasterProvider from "./providers/ToastProvider";
+import getSongsByUserId from "./actions/getSongsByUserId";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -15,11 +16,15 @@ export const metadata: Metadata = {
   description: "Supabase + PostgreSQL + Stripe, learned from Antonio",
 };
 
-export default function RootLayout({
+export const revalidate = 0;
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const songs = await getSongsByUserId();
+
   return (
     <html lang="en">
       <body className={figtree.className + " flex h-[100dvh] w-full"}>
@@ -27,7 +32,7 @@ export default function RootLayout({
         <SupabaseProvider>
           <UserContextProvider>
             <ModalProvider />
-            <SideBar />
+            <SideBar songs={songs} />
             <section
               className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
     overflow-y-auto "
