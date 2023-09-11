@@ -21,7 +21,8 @@ const SideBar = ({ songs }: Props) => {
         label: "Home",
         href: "/",
         active:
-          pathname.indexOf("search") === -1 && pathname.indexOf("liked") === -1,
+          pathname.indexOf("search") === -1 &&
+          pathname.indexOf("likedsongs") === -1,
       },
       {
         icon: BiSearch,
@@ -32,8 +33,8 @@ const SideBar = ({ songs }: Props) => {
       {
         icon: AiOutlineHeart,
         label: "Liked Songs",
-        href: "/liked",
-        active: pathname.indexOf("liked") !== -1,
+        href: "/likedsongs",
+        active: pathname.indexOf("likedsongs") !== -1,
       },
     ],
     [pathname]
