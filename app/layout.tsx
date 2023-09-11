@@ -8,6 +8,8 @@ import { UserContextProvider } from "./providers/UserContextProvider";
 import ModalProvider from "./providers/ModalProvider";
 import ToasterProvider from "./providers/ToastProvider";
 import getSongsByUserId from "./actions/getSongsByUserId";
+import Player from "./components/Player";
+import supabaseServerComponentClient from "./actions/supabaseServerComponentClient";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -24,22 +26,28 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const songs = await getSongsByUserId();
+  /*   const {
+    data: { user },
+  } = await supabaseServerComponentClient.auth.getUser(); */
 
   return (
     <html lang="en">
-      <body className={figtree.className + " flex h-[100dvh] w-full"}>
+      <body className={figtree.className + "h-[100dvh] w-full"}>
         <ToasterProvider />
         <SupabaseProvider>
           <UserContextProvider>
             <ModalProvider />
-            <SideBar songs={songs} />
-            <section
-              className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
+            <div className="flex w-full">
+              <SideBar songs={songs} />
+              <section
+                className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
     overflow-y-auto "
-            >
-              <Header />
-              {children}
-            </section>
+              >
+                <Header />
+                {children}
+              </section>
+            </div>
+            <Player />
           </UserContextProvider>
         </SupabaseProvider>
       </body>

@@ -7,6 +7,7 @@ import { BiSearch } from "react-icons/bi";
 import RouteItem, { Route } from "./RouteItem";
 import YourUploads from "./YourUploads";
 import { Song } from "../../types_incl_stripe";
+import usePlayer from "@/hooks/usePlayer";
 
 type Props = {
   songs: Song[];
@@ -14,6 +15,8 @@ type Props = {
 
 const SideBar = ({ songs }: Props) => {
   const pathname = usePathname();
+  const player = usePlayer();
+
   const routes: Route[] = useMemo(
     () => [
       {
@@ -41,7 +44,12 @@ const SideBar = ({ songs }: Props) => {
   );
 
   return (
-    <aside className="hidden md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold">
+    <aside
+      className={
+        "hidden md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold " +
+        (player.activeId ? " h-[92dvh]" : " h-[100dvh]")
+      }
+    >
       <section id="Home and Search" className="box-within-sidebar">
         {routes.map((route) => (
           <RouteItem key={route.label} route={route} />

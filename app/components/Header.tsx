@@ -38,9 +38,7 @@ const Header = (props: Props) => {
       toast.success("Logged out!", { id: "1" });
     }
 
-    /*  setTimeout(() => {
-      router.refresh();
-    }, 2000); */
+    router.refresh();
   };
 
   return (
@@ -91,7 +89,7 @@ const Header = (props: Props) => {
             <>
               <button
                 onClick={authModal.openModal}
-                className="btn-big bg-transparent text-PRIMARY font-extrabold hover:bg-transparent hover:text-white -mr-2 sm:-mr-1 md:mr-0"
+                className="btn-big bg-transparent text-PRIMARY hover:bg-transparent hover:text-white -mr-2 sm:-mr-1 md:mr-0"
               >
                 Sign up
               </button>
