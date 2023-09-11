@@ -10,12 +10,12 @@ import Input from "./Input";
 
 const SearchInput = () => {
   const router = useRouter();
-  const [value, setValue] = useState<string>("");
-  const debouncedValue = useDebounce<string>(value, 500);
+  const [keyword, setKeyword] = useState<string>("");
+  const debouncedKeyword = useDebounce<string>(keyword);
 
   useEffect(() => {
     const query = {
-      keyword: debouncedValue,
+      keyword: debouncedKeyword,
     };
 
     const url = qs.stringifyUrl({
@@ -24,13 +24,13 @@ const SearchInput = () => {
     });
 
     router.push(url);
-  }, [debouncedValue, router]);
+  }, [debouncedKeyword]);
 
   return (
     <Input
       placeholder="What do you want to listen to?"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={keyword}
+      onChange={(e) => setKeyword(e.target.value)}
       className="bg-black"
       autoFocus
     />
