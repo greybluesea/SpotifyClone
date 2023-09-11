@@ -1,7 +1,7 @@
 import { Song } from "../../types_incl_stripe";
 import supabaseServerComponentClient from "./supabaseServerComponentClient";
 
-const getSongs = async (): Promise<Song[]> => {
+const getAllSongs = async (): Promise<Song[]> => {
   const { data, error } = await supabaseServerComponentClient
     .from("songs")
     .select("*")
@@ -15,4 +15,4 @@ const getSongs = async (): Promise<Song[]> => {
   return (data as Song[]) || [];
 };
 
-export default getSongs;
+export default getAllSongs;

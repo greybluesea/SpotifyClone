@@ -1,10 +1,10 @@
-import getSongs from "./getSongs";
+import getAllSongs from "./getAllSongs";
 import { Song } from "../../types_incl_stripe";
 import supabaseServerComponentClient from "./supabaseServerComponentClient";
 
 const getSongsByKeywordInTitle = async (keyword: string): Promise<Song[]> => {
   if (!keyword) {
-    const allSongs = await getSongs();
+    const allSongs = await getAllSongs();
     return allSongs;
   }
 
