@@ -3,17 +3,41 @@
 import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
 import useUserContext from "@/hooks/useUserContext";
-import React from "react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { HiPlus } from "react-icons/hi";
 import { RiPlayListFill } from "react-icons/ri";
+import { Song } from "../../types_incl_stripe";
 
-type Props = {};
+/* type Props = { children: React.ReactNode }; */
 
-const Library = (props: Props) => {
+const YourUploads = (/* { children }: Props */) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const userContext = useUserContext();
+  const supabaseClient = useSupabaseClient();
+  const [songs, setSongs] = useState([] as Song[]);
+
+  const fetchSongsByUserId = async (id: string | undefined) => {
+    if (typeof id === "undefined") return;
+    const { data: songs, error } = await supabaseClient
+      .from("songs")
+      .select("*")
+      .eq("user_id", id)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.log(error.message);
+      return;
+    }
+    setSongs(songs);
+    return;
+  };
+
+  useEffect(() => {
+    fetchSongsByUserId(userContext?.user?.id);
+  }, [userContext.user]);
 
   const handleClick = () => {
     if (!userContext.user) {
@@ -24,17 +48,17 @@ const Library = (props: Props) => {
 
   return (
     <section
-      id="Library"
+      id="YourUploads"
       className="box-within-sidebar h-full overflow-y-auto "
     >
       <div
-        id="header of library"
+        id="header of YourUploads"
         className="flex items-center justify-between font-semibold  
            "
       >
         <div className="flex items-center gap-x-4 hover-text-highlight">
           <RiPlayListFill size={26} />
-          <p>Your Library</p>
+          <p>Your Uploads</p>
         </div>
         <HiPlus
           onClick={handleClick}
@@ -44,9 +68,12 @@ const Library = (props: Props) => {
           "
         />
       </div>
-      <div id="list of songs">List of Songs</div>
+      {/* {children}  */}
+      {songs.map((song) => (
+        <div key={song.id}>{song.title}</div>
+      ))}
     </section>
   );
 };
 
-export default Library;
+export default YourUploads;

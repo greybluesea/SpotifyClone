@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { AiFillHome } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import RouteItem, { Route } from "./RouteItem";
-import Library from "./Library";
+import YourUploads from "./YourUploads";
 
 /* type Props = {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ const SideBar = (/* { children }: Props */) => {
           <RouteItem key={route.label} route={route} />
         ))}
       </section>
-      <Library />
+      <YourUploads />
     </aside>
   );
 };

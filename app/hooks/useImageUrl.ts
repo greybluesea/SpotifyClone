@@ -12,8 +12,8 @@ const useImageUrl = (song: Song) => {
     .from("images")
     .getPublicUrl(song.image_path);
 
-  console.log(song.image_path);
-  console.log(imageData.publicUrl);
+  // console.log(song.image_path);
+  // console.log(imageData.publicUrl);
 
   return imageData.publicUrl;
 };
