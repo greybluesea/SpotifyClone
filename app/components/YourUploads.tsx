@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { RiPlayListFill } from "react-icons/ri";
 import { Song } from "../../types_incl_stripe";
+import UploadItem from "./UploadItem";
 
 /* type Props = { children: React.ReactNode }; */
 
@@ -75,7 +76,7 @@ const YourUploads = (/* { children }: Props */) => {
       </div>
       {/* {children}  */}
       {songs.map((song) => (
-        <div key={song.id}>{song.title}</div>
+        <UploadItem key={song.id} song={song} />
       ))}
     </section>
   );
