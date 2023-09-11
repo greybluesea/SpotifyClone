@@ -126,10 +126,10 @@ const Header = (props: Props) => {
             )
           ) : (
             <>
-              <span>Sign in </span>
-              <span className="text-xl">to upload, </span>
+              <span>Sign in to enjoy more</span>
+              {/* <span className="text-xl">to upload, </span>
               <span>Subscribe </span>
-              <span className="text-xl">to enjoy others music</span>
+              <span className="text-xl">to enjoy others music</span> */}
             </>
           )}
         </h1>
