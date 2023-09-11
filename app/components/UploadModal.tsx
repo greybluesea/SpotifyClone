@@ -108,7 +108,9 @@ const UploadModal = () => {
       } else {
         //   console.log(songInDatabase);
 
-        router.refresh();
+        setTimeout(() => {
+          router.refresh();
+        }, 1500);
         toast.success("Song added!");
         reset();
         closeModal();

@@ -10,7 +10,7 @@ import { useMemo } from "react";
 
 const UploadItem = ({ song }: { song: Song }) => {
   // const player = usePlayer();
-  const imageUrl = useMemo(() => useImageUrl(song), [song]);
+  const imageUrl = useImageUrl(song);
 
   /*   const handleClick = () => {
     if (onClick) {
