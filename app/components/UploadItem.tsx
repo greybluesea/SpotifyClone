@@ -27,6 +27,7 @@ const UploadItem = ({ song }: { song: Song }) => {
         flex 
         items-center 
         gap-x-3 
+        cursor-pointer
         hover:bg-BGCOLOR-SECONDARY 
         w-full 
         p-2 

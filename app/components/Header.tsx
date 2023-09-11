@@ -112,12 +112,14 @@ const Header = (props: Props) => {
         >
           {user ? (
             pathname.indexOf("search") !== -1 ? (
-              <div>Search by Keyword in Title</div>
+              <p>
+                Search <span className="text-xl"> by Keyword in Title</span>
+              </p>
             ) : (
               <>
                 <span>Welcome back</span>
-                <span>{user.email && ", "}</span>
-                <span className="text-2xl">{user.email}</span>
+                <span className="text-xl">{user.email && ", "}</span>
+                <span className="text-xl">{user.email}</span>
               </>
             )
           ) : (
