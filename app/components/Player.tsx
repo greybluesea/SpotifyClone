@@ -14,12 +14,10 @@ import PlayerContent from "./PlayerContent"; */
 const Player = () => {
   // const user = useUser();
   const player = usePlayer();
-  if (!player.activeId) return null;
-  const { song } = useGetSongById(player.activeId);
-
+  const { song } = useGetSongById(player?.activeId!);
   const songUrl = useSongUrl(song!);
 
-  if (!song || !songUrl) {
+  if (!song || !songUrl || !player.activeId) {
     return null;
   }
 
