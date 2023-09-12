@@ -17,7 +17,7 @@ const Player = () => {
   if (!songUrl || !player.activeSong) return null;
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 bg-BGCOLOR w-full py-2 px-4 h-[8dvh] ">
+    <div className="sticky bottom-0 left-0 right-0 bg-BGCOLOR w-full py-2 px-4 h-[8dvh] overflow-hidden">
       <PlayerContent key={songUrl} song={player.activeSong} songUrl={songUrl} />
     </div>
   );
