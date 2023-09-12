@@ -7,9 +7,10 @@ export const revalidate = 0;
 const LikedSongsPage = async () => {
   const songs = await getLikedSongs();
   return (
-    <div className="p-6">
+    <main className="p-6 py-4 space-y-6">
+      <p className="text-3xl">Liked songs</p>
       <PageContent songs={songs} />
-    </div>
+    </main>
   );
 };
 

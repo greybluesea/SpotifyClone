@@ -121,11 +121,11 @@ const Header = (props: Props) => {
             pathname.indexOf("search") !== -1 ? (
               <p>
                 Search <span className="text-xl"> by Keyword in Title</span>
-              </p>
-            ) : pathname.indexOf("likedsongs") !== -1 ? (
+              </p> /* : pathname.indexOf("likedsongs") !== -1 ? (
               <>
                 <span>Liked Songs</span>
               </>
+            )  */
             ) : (
               <>
                 <span>Welcome back</span>
