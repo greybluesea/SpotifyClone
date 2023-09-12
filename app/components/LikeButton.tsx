@@ -40,7 +40,10 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
 
   const Icon: IconType = isLiked ? AiFillHeart : AiOutlineHeart;
 
-  const handleClick = async () => {
+  const handleClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
     if (!user) {
       toast.success("please sign in to like songs");
       return authModal.openModal();
@@ -57,7 +60,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
         toast.error(error.message);
       } else {
         setIsLiked(false);
-        toast.success("Unliked");
+        toast.success("unliked");
       }
     } else {
       const { error } = await supabaseClient.from("liked_songs").insert({
@@ -69,7 +72,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success("Liked");
+        toast.success("liked");
       }
     }
 

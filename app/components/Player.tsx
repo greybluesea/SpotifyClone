@@ -5,10 +5,7 @@ import useSongUrl from "@/hooks/useSongUrl";
 import usePlayer from "@/hooks/usePlayer";
 import { useUser } from "@supabase/auth-helpers-react";
 
-/* import usePlayer from "@/hooks/usePlayer";
-import useLoadSongUrl from "@/hooks/useLoadSongUrl";
-
-import PlayerContent from "./PlayerContent"; */
+import PlayerContent from "./PlayerContent";
 
 const Player = () => {
   // const user = useUser();
@@ -21,7 +18,7 @@ const Player = () => {
 
   return (
     <div className="sticky bottom-0 left-0 right-0 bg-BGCOLOR w-full py-2 px-4 h-[8dvh] ">
-      {/*  <PlayerContent key={songUrl} song={player.activeSong} songUrl={songUrl} /> */}
+      <PlayerContent key={songUrl} song={player.activeSong} songUrl={songUrl} />
     </div>
   );
 };
