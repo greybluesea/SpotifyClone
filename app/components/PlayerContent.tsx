@@ -104,10 +104,11 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
       <section
         className="
+            w-[120px]
+            
             flex 
             sm:hidden 
-            space-x-6
-            w-full 
+            space-x-4
             justify-end 
             items-center
           "
