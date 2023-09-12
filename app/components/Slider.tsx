@@ -7,7 +7,7 @@ interface SlideProps {
   onChange?: (value: number) => void;
 }
 
-const Slider: React.FC<SlideProps> = ({ value = 1, onChange }) => {
+const Slider: React.FC<SlideProps> = ({ value = 0.5, onChange }) => {
   const handleChange = (newValue: number[]) => {
     onChange?.(newValue[0]);
   };
@@ -23,7 +23,7 @@ const Slider: React.FC<SlideProps> = ({ value = 1, onChange }) => {
         w-full 
         h-10
       "
-      defaultValue={[1]}
+      defaultValue={[0.5]}
       value={[value]}
       onValueChange={handleChange}
       max={1}

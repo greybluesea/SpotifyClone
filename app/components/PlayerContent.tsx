@@ -98,18 +98,14 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   };
 
   return (
-    <div className="flex justify-between h-full">
-      <div className="flex w-full justify-start">
-        <div className="flex items-center gap-x-4">
-          <MediaItem song={song} />
-        </div>
-      </div>
+    <div className="flex justify-between h-full max-w-5xl mx-auto">
+      <MediaItem song={song} />
 
       <div
         className="
             flex 
-            md:hidden 
-            col-auto 
+            sm:hidden 
+            space-x-5
             w-full 
             justify-end 
             items-center
@@ -120,24 +116,28 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           className="
               h-10
               w-10
-              flex 
-              items-center 
-              justify-center 
-              rounded-full 
-              bg-white 
               p-1 
+              grid
+              place-items-center
+              rounded-full 
+              bg-HIGHLIGHT 
               cursor-pointer
             "
         >
-          <Icon size={30} className="text-black" />
+          <Icon size={30} className="text-BGCOLOR" />
         </div>
+        <AiFillStepForward
+          onClick={onPlayNext}
+          size={46}
+          className="text-NEUTRAL hover-text-highlight"
+        />
       </div>
 
       <div
         className="
             hidden
             h-full
-            md:flex 
+            sm:flex 
             justify-center 
             items-center 
             w-full 
@@ -158,32 +158,26 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
         <div
           onClick={handlePlay}
           className="
-              flex 
-              items-center 
-              justify-center
               h-10
-              w-10 
-              rounded-full 
-              bg-white 
+              w-10
               p-1 
+              grid
+              place-items-center
+              rounded-full 
+              bg-HIGHLIGHT 
               cursor-pointer
             "
         >
-          <Icon size={30} className="text-black" />
+          <Icon size={30} className="text-BGCOLOR" />
         </div>
         <AiFillStepForward
           onClick={onPlayNext}
           size={30}
-          className="
-              text-neutral-400 
-              cursor-pointer 
-              hover:text-white 
-              transition
-            "
+          className="text-NEUTRAL hover-text-highlight"
         />
       </div>
 
-      <div className="hidden md:flex w-full justify-end pr-2">
+      <div className="hidden sm:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[120px]">
           <VolumeIcon
             onClick={toggleMute}
