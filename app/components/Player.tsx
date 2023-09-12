@@ -10,18 +10,18 @@ import toast from "react-hot-toast";
 
 const Player = () => {
   /*  const user = useUser(); */
-  const player = usePlayer();
-  const songUrl = useSongUrl(player.activeSong!);
+  const activeSong = usePlayer((state) => state.activeSong);
+  const songUrl = useSongUrl(activeSong!);
 
-  player.activeSong && !songUrl && toast.error("failed to fetch song url");
+  activeSong && !songUrl && toast.error("failed to fetch song url");
   /*   if (!user) {
-    player.reset()
+    reset()
   } */
-  if (!songUrl || !player.activeSong) return null;
+  if (!songUrl || !activeSong) return null;
 
   return (
     <div className="sticky bottom-0 left-0 right-0 bg-BGCOLOR w-full py-2 px-4 h-[8dvh] overflow-hidden">
-      <PlayerContent key={songUrl} song={player.activeSong} songUrl={songUrl} />
+      <PlayerContent key={songUrl} song={activeSong} songUrl={songUrl} />
     </div>
   );
 };
