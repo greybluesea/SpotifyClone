@@ -4,7 +4,7 @@ import { Song } from "../../types_incl_stripe";
 const useSongUrl = (song: Song) => {
   const supabaseClient = useSupabaseClient();
 
-  if (!song) {
+  if (!song || !song.song_path) {
     return "";
   }
 

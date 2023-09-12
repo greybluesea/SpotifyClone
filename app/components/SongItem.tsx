@@ -6,17 +6,17 @@ import useImageUrl from "@/hooks/useImageUrl";
 import PlayButton from "./PlayButton";
 import LikeButton from "./LikeButton";
 
-/* interface SongItemProps {
+interface SongItemProps {
   song: Song;
-  onClick: (id: string) => void;
+  handelClick: (song: Song) => void;
 }
- */
-const SongItem = ({ song }: { song: Song }) => {
+
+const SongItem = ({ song, handelClick }: SongItemProps) => {
   const imageUrl = useImageUrl(song);
 
   return (
     <div
-      onClick={() => {}}
+      onClick={() => handelClick(song)}
       className="
         group 
         rounded-md 

@@ -11,7 +11,7 @@ const usePutSongsIntoPlayer = (songs: Song[]) => {
   const authModal = useAuthModal();
   const user = useUser();
 
-  const putIntoPlayer = (id: string) => {
+  const putSongIntoPlayer = (song: Song) => {
     if (!user) {
       return authModal.openModal();
     }
@@ -20,11 +20,11 @@ const usePutSongsIntoPlayer = (songs: Song[]) => {
       return subscribeModal.onOpen();
     } */
 
-    player.setId(id);
-    player.setIds(songs.map((song) => song.id));
+    player.setSong(song);
+    player.setSongs(songs);
   };
 
-  return putIntoPlayer;
+  return putSongIntoPlayer;
 };
 
 export default usePutSongsIntoPlayer;

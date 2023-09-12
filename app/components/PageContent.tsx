@@ -1,16 +1,15 @@
 "use client";
 
+import usePutSongsIntoPlayer from "@/hooks/usePutSongsIntoPlayer";
 import { Song } from "../../types_incl_stripe";
 import SongItem from "./SongItem";
-/* import useOnPlay from "@/hooks/useOnPlay";
-import SongItem from "@/components/SongItem"; */
 
 interface PageContentProps {
   songs: Song[];
 }
 
 const PageContent = ({ songs }: PageContentProps) => {
-  /* const onPlay = useOnPlay(songs); */
+  const putSongIntoPlayer = usePutSongsIntoPlayer(songs);
 
   if (songs.length === 0) {
     return <div className=" text-NEUTRAL">No songs available.</div>;
@@ -38,7 +37,7 @@ const PageContent = ({ songs }: PageContentProps) => {
     >
       {songs.map((song) => (
         <SongItem
-          //  onClick={(id: string) => onPlay(id)}
+          handelClick={(song: Song) => putSongIntoPlayer(song)}
           key={song.id}
           song={song}
         />

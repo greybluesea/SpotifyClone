@@ -1,19 +1,20 @@
 import { create } from "zustand";
+import { Song } from "../../types_incl_stripe";
 
 interface PlayerStore {
-  activeId: string | null;
-  ids: string[];
-  setId: (id: string) => void;
-  setIds: (ids: string[]) => void;
+  activeSong: Song | null;
+  songs: Song[];
+  setSong: (song: Song) => void;
+  setSongs: (songs: Song[]) => void;
   reset: () => void;
 }
 
 const usePlayer = create<PlayerStore>((set) => ({
-  activeId: null,
-  ids: [],
-  setId: (id: string) => set({ activeId: id }),
-  setIds: (ids: string[]) => set({ ids }),
-  reset: () => set({ ids: [], activeId: null }),
+  activeSong: null,
+  songs: [],
+  setSong: (song: Song) => set({ activeSong: song }),
+  setSongs: (songs: Song[]) => set({ songs }),
+  reset: () => set({ songs: [], activeSong: null }),
 }));
 
 export default usePlayer;

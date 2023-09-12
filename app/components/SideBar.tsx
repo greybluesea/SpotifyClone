@@ -47,7 +47,7 @@ const SideBar = ({ songs }: Props) => {
     <aside
       className={
         "hidden sticky top-0 left-0 md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold " +
-        (player.activeId ? " h-[92dvh]" : " h-[100dvh]")
+        (player.activeSong ? " h-[92dvh]" : " h-[100dvh]")
       }
     >
       <section id="Home and Search" className="box-within-sidebar">
