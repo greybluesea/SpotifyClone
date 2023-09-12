@@ -15,7 +15,11 @@ const Player = () => {
   const songUrl = useSongUrl(player.activeSong!);
 
   player.activeSong && !songUrl && toast.error("failed to fetch song url");
-  if (!user || !songUrl || !player.activeSong) return null;
+  if (!user) {
+    player.reset();
+    return null;
+  }
+  if (!songUrl || !player.activeSong) return null;
 
   return (
     <div className="sticky bottom-0 left-0 right-0 bg-BGCOLOR w-full py-2 px-4 h-[8dvh] overflow-hidden">
