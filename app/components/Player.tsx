@@ -7,18 +7,17 @@ import { useUser } from "@supabase/auth-helpers-react";
 
 import PlayerContent from "./PlayerContent";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
 
 const Player = () => {
-  const user = useUser();
+  /*  const user = useUser(); */
   const player = usePlayer();
   const songUrl = useSongUrl(player.activeSong!);
 
   player.activeSong && !songUrl && toast.error("failed to fetch song url");
-  if (!user) {
+  /*   if (!user) {
     player.reset();
     return null;
-  }
+  } */
   if (!songUrl || !player.activeSong) return null;
 
   return (
