@@ -12,9 +12,8 @@ import ListItem from "./ListItem";
 import useAuthModal from "@/hooks/useAuthModal";
 import { AiFillHeart } from "react-icons/ai";
 
-/*
 import usePlayer from "@/hooks/usePlayer";
-
+/*
 import Button from "./Button"; */
 
 interface Props {}
@@ -25,13 +24,13 @@ const Header = (props: Props) => {
   const user = useUser();
   const pathname = usePathname();
 
-  // const player = usePlayer();
+  const player = usePlayer();
 
   const supabaseClient = useSupabaseClient();
 
   const handleLogout = async () => {
+    player.reset();
     const { error } = await supabaseClient.auth.signOut();
-    // player.reset();
 
     if (error) {
       toast.error(error.message, { id: "1" });

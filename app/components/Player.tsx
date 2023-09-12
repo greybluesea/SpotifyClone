@@ -15,8 +15,7 @@ const Player = () => {
 
   player.activeSong && !songUrl && toast.error("failed to fetch song url");
   /*   if (!user) {
-    player.reset();
-    return null;
+    player.reset()
   } */
   if (!songUrl || !player.activeSong) return null;
 
