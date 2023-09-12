@@ -43,7 +43,7 @@ const Header = (props: Props) => {
   };
 
   return (
-    <header className="bg-gradient-to-b  from-green-700 p-6 pb-8 space-y-4 w-full  sticky top-2 right-0 rounded-t-md z-[1] backdrop-blur-lg ">
+    <header className="bg-gradient-to-b  from-green-700 p-6 pb-8 space-y-4 w-full  sticky top-0 md:top-2 right-0 md:rounded-t-md z-[1] backdrop-blur-md ">
       <div id="buttons bar" className={"flex items-center justify-between"}>
         <section
           id="left-side btn-pair-black"
