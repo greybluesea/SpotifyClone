@@ -67,7 +67,7 @@ const YourUploads = ({ songs }: Props) => {
         <div
           className={
             "flex items-center gap-x-4 " +
-            (userContext?.user && " text-PRIMARY hover-text-highlight ") +
+            (userContext?.user && " hover-text-highlight ") +
             (pathname === "youruploads" && "text-HIGHLIGHT")
           }
           onClick={() => userContext?.user && router.push("/youruploads")}

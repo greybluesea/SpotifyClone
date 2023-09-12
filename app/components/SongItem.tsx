@@ -5,6 +5,7 @@ import { Song } from "../../types_incl_stripe";
 import useImageUrl from "@/hooks/useImageUrl";
 import PlayButton from "./PlayButton";
 import LikeButton from "./LikeButton";
+import usePlayer from "@/hooks/usePlayer";
 
 interface SongItemProps {
   song: Song;
@@ -13,21 +14,15 @@ interface SongItemProps {
 
 const SongItem = ({ song, handleClick }: SongItemProps) => {
   const imageUrl = useImageUrl(song);
+  const activeSong = usePlayer((state) => state.activeSong);
 
   return (
     <div
       onClick={() => handleClick(song)}
-      className="
-        group 
-        rounded-md 
-        overflow-hidden 
-        bg-BGCOLOR-SECONDARY 
-        cursor-pointer 
-        hover:bg-BGCOLOR-HIGHLIGHT 
-        transition 
-        duration-200
-        p-3
-      "
+      className={
+        " group rounded-md overflow-hidden bg-BGCOLOR-SECONDARY hover-bg-highlight p-3 " +
+        (activeSong?.id === song.id && " bg-neutral-600")
+      }
     >
       <div
         className="

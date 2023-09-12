@@ -8,6 +8,7 @@ import useImageUrl from "@/hooks/useImageUrl";
 import PlayButton from "./PlayButton";
 import { useMemo } from "react";
 import LikeButton from "./LikeButton";
+import usePlayer from "@/hooks/usePlayer";
 
 interface UploadItemProps {
   song: Song;
@@ -17,6 +18,7 @@ interface UploadItemProps {
 const UploadItem = ({ song, handleClick }: UploadItemProps) => {
   // const player = usePlayer();
   const imageUrl = useImageUrl(song);
+  const activeSong = usePlayer((state) => state.activeSong);
 
   /*   const handleClick = () => {
     if (onClick) {
@@ -29,15 +31,10 @@ const UploadItem = ({ song, handleClick }: UploadItemProps) => {
   return (
     <div
       onClick={() => handleClick(song)}
-      className="
-        flex 
-        cursor-pointer
-        hover:bg-BGCOLOR-SECONDARY 
-        w-full 
-        p-2
-        group 
-        rounded-md 
-      "
+      className={
+        "flex cursor-pointer transition duration-200 hover:bg-BGCOLOR-SECONDARY w-full p-2 group rounded-md " +
+        (activeSong?.id === song.id && " bg-BGCOLOR-HIGHLIGHT")
+      }
     >
       <div
         className="flex  
