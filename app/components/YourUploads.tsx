@@ -76,10 +76,12 @@ const YourUploads = ({ songs }: Props) => {
           "
         />
       </div>
-      {/* {children}  */}
-      {songs.map((song) => (
-        <UploadItem key={song.id} song={song} />
-      ))}
+      <div className="space-y-2">
+        {/* {children}  */}
+        {songs.map((song) => (
+          <UploadItem key={song.id} song={song} />
+        ))}
+      </div>
     </section>
   );
 };

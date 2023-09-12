@@ -54,9 +54,9 @@ const SongItem = ({ song }: { song: Song }) => {
           <PlayButton />
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="py-4 space-y-1">
-          <p className="font-semibold truncate w-full">{song.title}</p>
+      <div className="flex justify-between space-x-2">
+        <div className="py-4 space-y-1 truncate">
+          <p className="font-semibold truncate">{song.title}</p>
           <p className="text-NEUTRAL text-sm w-full truncate">
             By {song.author}
           </p>

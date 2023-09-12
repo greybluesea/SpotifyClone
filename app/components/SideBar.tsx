@@ -46,7 +46,7 @@ const SideBar = ({ songs }: Props) => {
   return (
     <aside
       className={
-        "hidden md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold " +
+        "hidden sticky top-0 left-0 md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold " +
         (player.activeId ? " h-[92dvh]" : " h-[100dvh]")
       }
     >

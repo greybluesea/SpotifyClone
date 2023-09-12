@@ -10,6 +10,7 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import ListItem from "./ListItem";
 import useAuthModal from "@/hooks/useAuthModal";
+import { AiFillHeart } from "react-icons/ai";
 
 /*
 import usePlayer from "@/hooks/usePlayer";
@@ -56,7 +57,7 @@ const Header = (props: Props) => {
           </button>
         </section>
         <section
-          id="left-side btn-pair-white"
+          id="left-side btn-group-white"
           className="flex md:hidden gap-x-2 items-center"
         >
           <button onClick={() => router.push("/")} className="btn-round-white">
@@ -68,6 +69,14 @@ const Header = (props: Props) => {
           >
             <BiSearch className="text-BGCOLOR" size={20} />
           </button>
+          {user && (
+            <button
+              onClick={() => router.push("/likedsongs")}
+              className="btn-round-white"
+            >
+              <AiFillHeart className="text-BGCOLOR" size={20} />
+            </button>
+          )}
         </section>
         <section
           id="right-side btn-big-pair"
@@ -124,6 +133,10 @@ const Header = (props: Props) => {
                 <span className="text-xl">{user.email}</span>
               </>
             )
+          ) : pathname.indexOf("search") !== -1 ? (
+            <p>
+              Search <span className="text-xl"> by Keyword in Title</span>
+            </p>
           ) : (
             <>
               <span>Sign in to enjoy more</span>

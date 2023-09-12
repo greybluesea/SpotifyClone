@@ -39,6 +39,7 @@ export default async function RootLayout({
             <ModalProvider />
             <div className="flex w-full">
               <SideBar songs={songs} />
+
               <section
                 className=" bg-BGCOLOR rounded-lg w-full m-2 overflow-hidden
     overflow-y-auto "
