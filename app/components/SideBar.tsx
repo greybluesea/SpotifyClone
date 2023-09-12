@@ -17,6 +17,7 @@ type Props = {
 const SideBar = ({ songs }: Props) => {
   const pathname = usePathname();
   const player = usePlayer();
+  const songUrl = useSongUrl(player.activeSong!);
 
   const routes: Route[] = useMemo(
     () => [
@@ -49,7 +50,7 @@ const SideBar = ({ songs }: Props) => {
     <aside
       className={
         "hidden sticky top-0 left-0 md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold h-[100dvh] " +
-        (player.activeSong && !!useSongUrl(player.activeSong) && " h-[92dvh]")
+        (player.activeSong && !!songUrl && " h-[92dvh]")
       }
     >
       <section id="Home and Search" className="box-within-sidebar">

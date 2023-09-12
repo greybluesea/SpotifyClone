@@ -11,10 +11,9 @@ import toast from "react-hot-toast";
 const Player = () => {
   // const user = useUser();
   const player = usePlayer();
-  let songUrl = "";
-  player.activeSong && (songUrl = useSongUrl(player.activeSong));
-  player.activeSong && !songUrl && toast.error("failed to fetch song url");
+  const songUrl = useSongUrl(player.activeSong!);
 
+  player.activeSong && !songUrl && toast.error("failed to fetch song url");
   if (!songUrl || !player.activeSong) return null;
 
   return (
