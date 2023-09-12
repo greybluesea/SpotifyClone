@@ -9,7 +9,7 @@ export const revalidate = 0;
 export default async function Home() {
   const songs = await getAllSongs();
   return (
-    <main className="p-6 space-y-4">
+    <main className="p-6 py-4 space-y-6">
       <p className="text-3xl">All songs</p>
       {/* <ListItem /> */}
       <PageContent songs={songs} />

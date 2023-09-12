@@ -8,15 +8,15 @@ import LikeButton from "./LikeButton";
 
 interface SongItemProps {
   song: Song;
-  handelClick: (song: Song) => void;
+  handleClick: (song: Song) => void;
 }
 
-const SongItem = ({ song, handelClick }: SongItemProps) => {
+const SongItem = ({ song, handleClick }: SongItemProps) => {
   const imageUrl = useImageUrl(song);
 
   return (
     <div
-      onClick={() => handelClick(song)}
+      onClick={() => handleClick(song)}
       className="
         group 
         rounded-md 

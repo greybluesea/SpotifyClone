@@ -2,6 +2,8 @@ import getLikedSongs from "@/actions/getLikedSongs";
 import PageContent from "@/components/PageContent";
 import React from "react";
 
+export const revalidate = 0;
+
 const LikedSongsPage = async () => {
   const songs = await getLikedSongs();
   return (

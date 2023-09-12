@@ -37,7 +37,7 @@ const PageContent = ({ songs }: PageContentProps) => {
     >
       {songs.map((song) => (
         <SongItem
-          handelClick={(song: Song) => putSongIntoPlayer(song)}
+          handleClick={(song: Song) => putSongIntoPlayer(song)}
           key={song.id}
           song={song}
         />

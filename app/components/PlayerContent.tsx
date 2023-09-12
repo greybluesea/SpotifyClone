@@ -14,6 +14,7 @@ import Slider from "./Slider";
 //@ts-ignore
 import useSound from "use-sound";
 import MediaItem from "./MediaItem";
+import { IconType } from "react-icons";
 
 interface PlayerContentProps {
   song: Song;
@@ -25,8 +26,8 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   const [volume, setVolume] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const Icon = isPlaying ? BsPauseFill : BsPlayFill;
-  const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
+  const Icon: IconType = isPlaying ? BsPauseFill : BsPlayFill;
+  const VolumeIcon: IconType = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
   const onPlayNext = () => {
     if (player.songs.length === 0) {
@@ -101,11 +102,11 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
     <div className="flex justify-between h-full max-w-5xl mx-auto">
       <MediaItem song={song} />
 
-      <div
+      <section
         className="
             flex 
             sm:hidden 
-            space-x-5
+            space-x-6
             w-full 
             justify-end 
             items-center
@@ -134,9 +135,9 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           size={46}
           className="text-NEUTRAL hover-text-highlight"
         />
-      </div>
+      </section>
 
-      <div
+      <section
         className="
             hidden
             h-full
@@ -151,12 +152,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
         <AiFillStepBackward
           onClick={onPlayPrevious}
           size={30}
-          className="
-              text-neutral-400 
-              cursor-pointer 
-              hover:text-white 
-              transition
-            "
+          className="text-NEUTRAL hover-text-highlight"
         />
         <div
           onClick={handlePlay}
@@ -181,18 +177,18 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           size={30}
           className="text-NEUTRAL hover-text-highlight"
         />
-      </div>
+      </section>
 
-      <div className="hidden sm:flex w-full justify-end pr-2">
+      <section className="hidden sm:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[120px]">
           <VolumeIcon
             onClick={toggleMute}
-            className="cursor-pointer"
+            className="hover-text-highlight"
             size={34}
           />
           <Slider value={volume} onChange={(value) => setVolume(value)} />
         </div>
-      </div>
+      </section>
     </div>
   );
 };

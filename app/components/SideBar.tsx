@@ -8,6 +8,7 @@ import RouteItem, { Route } from "./RouteItem";
 import YourUploads from "./YourUploads";
 import { Song } from "../../types_incl_stripe";
 import usePlayer from "@/hooks/usePlayer";
+import useSongUrl from "@/hooks/useSongUrl";
 
 type Props = {
   songs: Song[];
@@ -25,7 +26,8 @@ const SideBar = ({ songs }: Props) => {
         href: "/",
         active:
           pathname.indexOf("search") === -1 &&
-          pathname.indexOf("likedsongs") === -1,
+          pathname.indexOf("likedsongs") === -1 &&
+          pathname.indexOf("youruploads") === -1,
       },
       {
         icon: BiSearch,
@@ -46,8 +48,8 @@ const SideBar = ({ songs }: Props) => {
   return (
     <aside
       className={
-        "hidden sticky top-0 left-0 md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold " +
-        (player.activeSong ? " h-[92dvh]" : " h-[100dvh]")
+        "hidden sticky top-0 left-0 md:flex flex-col gap-y-2 w-[560px] p-2 pr-0 text-NEUTRAL font-semibold h-[100dvh] " +
+        (player.activeSong && !!useSongUrl(player.activeSong) && " h-[92dvh]")
       }
     >
       <section id="Home and Search" className="box-within-sidebar">

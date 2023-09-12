@@ -9,7 +9,12 @@ import PlayButton from "./PlayButton";
 import { useMemo } from "react";
 import LikeButton from "./LikeButton";
 
-const UploadItem = ({ song }: { song: Song }) => {
+interface UploadItemProps {
+  song: Song;
+  handleClick: (song: Song) => void;
+}
+
+const UploadItem = ({ song, handleClick }: UploadItemProps) => {
   // const player = usePlayer();
   const imageUrl = useImageUrl(song);
 
@@ -23,7 +28,7 @@ const UploadItem = ({ song }: { song: Song }) => {
 
   return (
     <div
-      //   onClick={handleClick}
+      onClick={() => handleClick(song)}
       className="
         flex 
         cursor-pointer

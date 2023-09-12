@@ -1,10 +1,10 @@
 "use client";
 
 import useAuthModal from "@/hooks/useAuthModal";
+import usePutSongsIntoPlayer from "@/hooks/usePutSongsIntoPlayer";
 import useUploadModal from "@/hooks/useUploadModal";
 import useUserContext from "@/hooks/useUserContext";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import React, { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { RiPlayListFill } from "react-icons/ri";
@@ -19,6 +19,11 @@ const YourUploads = ({ songs }: Props) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const userContext = useUserContext();
+  const putSongIntoPlayer = usePutSongsIntoPlayer(songs);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // fetching songs from client side; changed to using server side fetching
   /* const supabaseClient = useSupabaseClient();
   const [songs, setSongs] = useState([] as Song[]);
 
@@ -52,7 +57,7 @@ const YourUploads = ({ songs }: Props) => {
   return (
     <section
       id="YourUploads"
-      className="box-within-sidebar h-full overflow-y-auto "
+      className="box-within-sidebar h-full overflow-y-auto"
     >
       <div
         id="header of YourUploads"
@@ -62,8 +67,10 @@ const YourUploads = ({ songs }: Props) => {
         <div
           className={
             "flex items-center gap-x-4 " +
-            (userContext?.user && " text-PRIMARY")
+            (userContext?.user && " text-PRIMARY hover-text-highlight ") +
+            (pathname === "youruploads" && "text-HIGHLIGHT")
           }
+          onClick={() => userContext?.user && router.push("/youruploads")}
         >
           <RiPlayListFill size={26} />
           <p>Your Uploads</p>
@@ -71,15 +78,20 @@ const YourUploads = ({ songs }: Props) => {
         <BiSolidCloudUpload
           onClick={handleClick}
           size={34}
-          className="
-          hover-text-highlight
-          "
+          className="hover-text-highlight"
         />
       </div>
       <div className="space-y-2">
         {/* {children}  */}
         {songs.map((song) => (
-          <UploadItem key={song.id} song={song} />
+          <UploadItem
+            key={song.id}
+            song={song}
+            handleClick={(song) => {
+              putSongIntoPlayer(song);
+              router.push("youruploads");
+            }}
+          />
         ))}
       </div>
     </section>

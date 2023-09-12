@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import useImageUrl from "@/hooks/useImageUrl";
 import { Song } from "../../types_incl_stripe";
+import LikeButton from "./LikeButton";
 
 const MediaItem = ({ song }: { song: Song }) => {
   const imageUrl = useImageUrl(song);
@@ -46,6 +47,8 @@ const MediaItem = ({ song }: { song: Song }) => {
           <p className="text-NEUTRAL text-sm truncate">By {song.author}</p>
         </div>
       </div>
+
+      {/* <LikeButton songId={song.id} /> */}
     </div>
   );
 };
