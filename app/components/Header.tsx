@@ -139,7 +139,7 @@ const Header = (props: Props) => {
             </p>
           ) : (
             <>
-              <span>Sign in to enjoy more</span>
+              <span>Sign in to enjoy</span>
               {/* <span className="text-xl">to upload, </span>
               <span>Subscribe </span>
               <span className="text-xl">to enjoy others music</span> */}

@@ -22,7 +22,7 @@ interface PlayerContentProps {
 
 const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   const player = usePlayer();
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
@@ -124,7 +124,10 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
               cursor-pointer
             "
         >
-          <Icon size={30} className="text-BGCOLOR" />
+          <Icon
+            size={30}
+            className={"text-BGCOLOR " + (!isPlaying && "ml-0.5")}
+          />
         </div>
         <AiFillStepForward
           onClick={onPlayNext}
@@ -168,7 +171,10 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
               cursor-pointer
             "
         >
-          <Icon size={30} className="text-BGCOLOR" />
+          <Icon
+            size={30}
+            className={"text-BGCOLOR " + (!isPlaying && "ml-0.5")}
+          />
         </div>
         <AiFillStepForward
           onClick={onPlayNext}
