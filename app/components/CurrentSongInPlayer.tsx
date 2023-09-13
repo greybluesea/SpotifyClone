@@ -16,12 +16,12 @@ import useSound from "use-sound";
 import MediaItem from "./MediaItem";
 import { IconType } from "react-icons";
 
-interface PlayerContentProps {
+interface CurrentSongInPlayerProps {
   song: Song;
   songUrl: string;
 }
 
-const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
+const CurrentSongInPlayer = ({ song, songUrl }: CurrentSongInPlayerProps) => {
   const player = usePlayer();
   const [volume, setVolume] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,7 +29,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   const Icon: IconType = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon: IconType = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
-  const onPlayNext = () => {
+  const handlePlayNext = () => {
     if (player.songs.length === 0) return;
     if (!player.activeSong) return player.setSong(player.songs[0]);
 
@@ -52,7 +52,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
     player.setSong(nextSong);
   };
 
-  const onPlayPrevious = () => {
+  const handlePlayPrevious = () => {
     if (player.songs.length === 0) return;
     if (!player.activeSong)
       return player.setSong(player.songs[player.songs.length - 1]);
@@ -78,7 +78,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
     onplay: () => setIsPlaying(true),
     onend: () => {
       setIsPlaying(false);
-      onPlayNext();
+      handlePlayNext();
     },
     onpause: () => setIsPlaying(false),
     format: ["mp3"],
@@ -142,7 +142,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           />
         </div>
         <AiFillStepForward
-          onClick={onPlayNext}
+          onClick={handlePlayNext}
           size={46}
           className="text-NEUTRAL hover-text-highlight"
         />
@@ -162,7 +162,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           "
       >
         <AiFillStepBackward
-          onClick={onPlayPrevious}
+          onClick={handlePlayPrevious}
           size={30}
           className="text-NEUTRAL hover-text-highlight"
         />
@@ -185,7 +185,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           />
         </div>
         <AiFillStepForward
-          onClick={onPlayNext}
+          onClick={handlePlayNext}
           size={30}
           className="text-NEUTRAL hover-text-highlight"
         />
@@ -205,4 +205,4 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   );
 };
 
-export default PlayerContent;
+export default CurrentSongInPlayer;

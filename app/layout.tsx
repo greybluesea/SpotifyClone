@@ -8,7 +8,7 @@ import { UserContextProvider } from "./providers/UserContextProvider";
 import ModalProvider from "./providers/ModalProvider";
 import ToasterProvider from "./providers/ToastProvider";
 import getSongsByUserId from "./actions/getSongsByUserId";
-import Player from "./components/Player";
+import PlayerBar from "./components/PlayerBar";
 import supabaseServerComponentClient from "./actions/supabaseServerComponentClient";
 
 const figtree = Figtree({ subsets: ["latin"] });
@@ -45,7 +45,7 @@ export default async function RootLayout({
                 {children}
               </section>
             </div>
-            <Player />
+            <PlayerBar />
           </UserContextProvider>
         </SupabaseProvider>
       </body>
