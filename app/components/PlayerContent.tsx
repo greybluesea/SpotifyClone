@@ -30,40 +30,50 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   const VolumeIcon: IconType = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
   const onPlayNext = () => {
-    if (player.songs.length === 0) {
-      return;
-    }
+    if (player.songs.length === 0) return;
+    if (!player.activeSong) return player.setSong(player.songs[0]);
 
     const currentIndex = player.songs.findIndex(
-      (song) => song === player.activeSong
+      (song) => song.id === player.activeSong?.id
     );
-    const nextSong = player.songs[currentIndex + 1];
 
-    if (!nextSong) {
-      return player.setSong(player.songs[0]);
-    }
+    if (currentIndex === -1) return player.setSong(player.songs[0]);
+
+    const nextSong =
+      currentIndex + 1 < player.songs.length
+        ? player.songs[currentIndex + 1]
+        : player.songs[0];
+
+    /*  const nextSong = player.songs[currentIndex + 1];
+    if (!nextSong) return player.setSong(player.songs[0]);
+      
+    */
 
     player.setSong(nextSong);
   };
 
   const onPlayPrevious = () => {
-    if (player.songs.length === 0) {
-      return;
-    }
+    if (player.songs.length === 0) return;
+    if (!player.activeSong)
+      return player.setSong(player.songs[player.songs.length - 1]);
 
     const currentIndex = player.songs.findIndex(
-      (song) => song === player.activeSong
+      (song) => song.id === player.activeSong?.id
     );
-    const previousSong = player.songs[currentIndex - 1];
 
-    if (!previousSong) {
-      return player.setSong(player.songs[player.songs.length - 1]);
-    }
+    const previousSong =
+      currentIndex - 1 >= 0
+        ? player.songs[currentIndex - 1]
+        : player.songs[player.songs.length - 1];
+
+    /*  const previousSong = player.songs[currentIndex - 1];
+    if (!previousSong) return player.setSong(player.songs[player.songs.length - 1]);
+     */
 
     player.setSong(previousSong);
   };
 
-  const [play, { pause, sound }] = useSound(songUrl, {
+  const [play, { pause, sound: songInPlayer }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
     onend: () => {
@@ -75,12 +85,12 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   });
 
   useEffect(() => {
-    sound?.play();
+    songInPlayer?.play();
 
     return () => {
-      sound?.unload();
+      songInPlayer?.unload();
     };
-  }, [sound]);
+  }, [songInPlayer]);
 
   const handlePlay = () => {
     if (!isPlaying) {
@@ -92,17 +102,18 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
   const toggleMute = () => {
     if (volume === 0) {
-      setVolume(1);
+      setVolume(0.5);
     } else {
       setVolume(0);
     }
   };
 
   return (
-    <div className="flex justify-between h-full max-w-5xl mx-auto">
+    <div className="flex justify-between h-full max-w-4xl mx-auto">
       <MediaItem song={song} />
 
       <section
+        id="below-sm control"
         className="
             w-[120px]
             flex 
@@ -138,6 +149,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
       </section>
 
       <section
+        id="above-sm control"
         className="
             hidden
             h-full
@@ -186,7 +198,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
             className="hover-text-highlight"
             size={34}
           />
-          <Slider value={volume} onChange={(value) => setVolume(value)} />
+          <Slider value={volume} handleChange={(value) => setVolume(value)} />
         </div>
       </section>
     </div>

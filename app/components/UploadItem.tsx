@@ -18,7 +18,7 @@ interface UploadItemProps {
 const UploadItem = ({ song, handleClick }: UploadItemProps) => {
   // const player = usePlayer();
   const imageUrl = useImageUrl(song);
-  const activeSong = usePlayer((state) => state.activeSong);
+  /* const activeSong = usePlayer((state) => state.activeSong); */
 
   /*   const handleClick = () => {
     if (onClick) {
@@ -32,8 +32,8 @@ const UploadItem = ({ song, handleClick }: UploadItemProps) => {
     <div
       onClick={() => handleClick(song)}
       className={
-        "flex cursor-pointer transition duration-200 hover:bg-BGCOLOR-SECONDARY w-full p-2 group rounded-md " +
-        (activeSong?.id === song.id && " bg-BGCOLOR-HIGHLIGHT")
+        "flex cursor-pointer transition duration-200 hover:bg-BGCOLOR-SECONDARY w-full p-2 group rounded-md "
+        /*   + (activeSong?.id === song.id && " bg-BGCOLOR-HIGHLIGHT") */
       }
     >
       <div

@@ -21,7 +21,7 @@ const SongItem = ({ song, handleClick }: SongItemProps) => {
       onClick={() => handleClick(song)}
       className={
         " group rounded-md overflow-hidden bg-BGCOLOR-SECONDARY hover-bg-highlight p-3 " +
-        (activeSong?.id === song.id && " bg-neutral-600")
+        (activeSong?.id === song.id && " bg-neutral-500")
       }
     >
       <div

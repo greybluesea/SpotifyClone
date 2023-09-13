@@ -61,6 +61,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       } else {
         setIsLiked(false);
         toast.success("unliked");
+        router.refresh();
       }
     } else {
       const { error } = await supabaseClient.from("liked_songs").insert({
@@ -73,6 +74,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       } else {
         setIsLiked(true);
         toast.success("liked");
+        router.refresh();
       }
     }
 
