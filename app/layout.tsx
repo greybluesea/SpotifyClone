@@ -40,7 +40,7 @@ export default async function RootLayout({
             <div className="flex w-full">
               <SideBar songs={songs} />
 
-              <section className=" bg-BGCOLOR rounded-lg w-full md:m-2">
+              <section className="bg-BGCOLOR rounded-lg w-full md:m-2">
                 <Header />
                 {children}
               </section>

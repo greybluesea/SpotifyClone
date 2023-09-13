@@ -26,7 +26,7 @@ const CurrentSongInPlayer = ({ song, songUrl }: CurrentSongInPlayerProps) => {
   const [volume, setVolume] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const Icon: IconType = isPlaying ? BsPauseFill : BsPlayFill;
+  const ControlIcon: IconType = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon: IconType = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
   const handlePlayNext = () => {
@@ -136,7 +136,7 @@ const CurrentSongInPlayer = ({ song, songUrl }: CurrentSongInPlayerProps) => {
               cursor-pointer
             "
         >
-          <Icon
+          <ControlIcon
             size={30}
             className={"text-BGCOLOR " + (!isPlaying && "ml-0.5")}
           />
@@ -179,7 +179,7 @@ const CurrentSongInPlayer = ({ song, songUrl }: CurrentSongInPlayerProps) => {
               cursor-pointer
             "
         >
-          <Icon
+          <ControlIcon
             size={30}
             className={"text-BGCOLOR " + (!isPlaying && "ml-0.5")}
           />
