@@ -12,7 +12,9 @@ export type UserContextType = {
   subscription: Subscription | null;
 };
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(
+  undefined
+);
 
 export type Props = /* Record<string, any> ;*/ {
   children: ReactNode;
