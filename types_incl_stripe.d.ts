@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { Database } from "./type_Database";
 
 export type Song = {
   id: string;
@@ -19,6 +20,8 @@ export type Product = {
   metadata?: Stripe.Metadata;
 };
 
+//  type Product = Database["public"]["Tables"]["products"]["Insert"];
+
 export type Price = {
   id: string;
   product_id?: string;
@@ -34,12 +37,16 @@ export type Price = {
   products?: Product;
 };
 
+// type Price = Database["public"]["Tables"]["prices"]["Insert"];
+
 export type Customer = {
   id: string;
   stripe_customer_id?: string;
 };
 
-export type UserDetails = {
+// type Customer = Database["public"]["Tables"]["customers"]["Insert"];
+
+export type UserPublic = {
   id: string;
   first_name: string;
   last_name: string;
@@ -47,7 +54,9 @@ export type UserDetails = {
   email?: string;
   avatar_url?: string;
   billing_address?: Stripe.Address;
-  payment_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
+  payment_method?: {
+    type: Stripe.PaymentMethod.Type;
+  } & Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
 };
 
 export type ProductWithPrice = Product & {
@@ -60,7 +69,6 @@ export type Subscription = {
   status?: Stripe.Subscription.Status;
   metadata?: Stripe.Metadata;
   price_id?: string;
-  quantity?: number;
   cancel_at_period_end?: boolean;
   created: string;
   current_period_start: string;
@@ -70,5 +78,9 @@ export type Subscription = {
   canceled_at?: string;
   trial_start?: string;
   trial_end?: string;
-  prices?: Price;
+  prices?: Price[];
 };
+
+// type Subs = Partial<Stripe.Subscription>;
+
+// type Subscription = Database["public"]["Tables"]["subscriptions"]["Insert"];
