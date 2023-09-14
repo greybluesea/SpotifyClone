@@ -10,6 +10,7 @@ import { BiSolidCloudUpload } from "react-icons/bi";
 import { RiPlayListFill } from "react-icons/ri";
 import { Song } from "../../types_incl_stripe";
 import UploadItem from "./UploadItem";
+import Footer from "./Footer";
 
 type Props = {
   songs: Song[];
@@ -57,7 +58,7 @@ const YourUploads = ({ songs }: Props) => {
   return (
     <section
       id="YourUploads"
-      className="box-within-sidebar h-full overflow-y-auto"
+      className="box-within-sidebar h-full overflow-y-auto flex flex-col"
     >
       <div
         id="header of YourUploads"
@@ -94,6 +95,7 @@ const YourUploads = ({ songs }: Props) => {
           />
         ))}
       </div>
+      <Footer />
     </section>
   );
 };
