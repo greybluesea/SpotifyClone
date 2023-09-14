@@ -1,12 +1,12 @@
 "use client";
 import { User, useSessionContext, useUser } from "@supabase/auth-helpers-react";
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { Subscription, UserDetails } from "../../types_incl_stripe";
+import { Subscription, UserPublic } from "../../types_incl_stripe";
 
 export type UserContextType = {
   accessToken: string | null;
   user: User | null;
-  userDetails: UserDetails | null;
+  userPublic: UserPublic | null;
   isLoading: boolean;
   subscription: Subscription | null;
 };
@@ -29,11 +29,10 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
   const user = useUser();
   const accessToken = session?.access_token ?? null;
   const [isLoadingDetailsOrSubs, setIsLoadingDetailsOrSubs] = useState(false);
-  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+  const [userPublic, setUserPublic] = useState<UserPublic | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
-  const getUserDetails = () =>
-    supabaseClient.from("users").select("*").single();
+  const getUserPublic = () => supabaseClient.from("users").select("*").single();
   const getSubscription = () =>
     supabaseClient
       .from("subscriptions")
@@ -42,15 +41,15 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
       .single();
 
   useEffect(() => {
-    if (user && !userDetails && !subscription && !isLoadingDetailsOrSubs) {
+    if (user && !userPublic && !subscription && !isLoadingDetailsOrSubs) {
       setIsLoadingDetailsOrSubs(true);
-      Promise.allSettled([getUserDetails(), getSubscription()]).then(
+      Promise.allSettled([getUserPublic(), getSubscription()]).then(
         (results) => {
-          const userDetailsPromiseResult = results[0];
+          const userPublicPromiseResult = results[0];
           const subscriptionPromiseResult = results[1];
 
-          if (userDetailsPromiseResult.status === "fulfilled")
-            setUserDetails(userDetailsPromiseResult.value.data as UserDetails);
+          if (userPublicPromiseResult.status === "fulfilled")
+            setUserPublic(userPublicPromiseResult.value.data as UserPublic);
 
           if (subscriptionPromiseResult.status === "fulfilled")
             setSubscription(
@@ -61,7 +60,7 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
         }
       );
     } else if (!user && !isLoadingSession && !isLoadingDetailsOrSubs) {
-      setUserDetails(null);
+      setUserPublic(null);
       setSubscription(null);
     }
   }, [user, isLoadingSession]);
@@ -69,7 +68,7 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
   const userContext: UserContextType = {
     accessToken,
     user,
-    userDetails,
+    userPublic,
     isLoading: isLoadingSession || isLoadingDetailsOrSubs,
     subscription,
   };
