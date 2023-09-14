@@ -53,7 +53,7 @@ const upsertPriceExcerpt = async (priceStripe: Stripe.Price) => {
   console.log(`price inserted or updated: ${priceStripe.id}`);
 };
 
-const createOrRetrieveCustomerInStripe = async (
+const retrieveOrCreateCustomerIdInStripe = async (
   uuid: string,
   email?: string
 ) => {
@@ -182,6 +182,6 @@ const updateSubsStatusChangeFromStripe = async (
 export {
   upsertProductExcerpt,
   upsertPriceExcerpt,
-  createOrRetrieveCustomerInStripe,
+  retrieveOrCreateCustomerIdInStripe,
   updateSubsStatusChangeFromStripe,
 };
