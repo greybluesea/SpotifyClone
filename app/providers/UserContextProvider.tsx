@@ -2,18 +2,17 @@
 import { User, useSessionContext, useUser } from "@supabase/auth-helpers-react";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { Subscription, UserPublic } from "../../types_incl_stripe";
+import toast from "react-hot-toast";
 
 export type UserContextType = {
-  accessToken: string | null;
   user: User | null;
-  userPublic: UserPublic | null;
+  accessToken: string | null;
   isLoading: boolean;
+  userPublic: UserPublic | null;
   subscription: Subscription | null;
 };
 
-export const UserContext = createContext<UserContextType | undefined>(
-  undefined
-);
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export type Props = /* Record<string, any> ;*/ {
   children: ReactNode;
@@ -43,8 +42,8 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
   useEffect(() => {
     if (user && !userPublic && !subscription && !isLoadingDetailsOrSubs) {
       setIsLoadingDetailsOrSubs(true);
-      Promise.allSettled([getUserPublic(), getSubscription()]).then(
-        (results) => {
+      Promise.allSettled([getUserPublic(), getSubscription()])
+        .then((results) => {
           const userPublicPromiseResult = results[0];
           const subscriptionPromiseResult = results[1];
 
@@ -57,8 +56,12 @@ export const UserContextProvider = ({ children, ...props }: Props) => {
             );
 
           setIsLoadingDetailsOrSubs(false);
-        }
-      );
+        })
+        .catch((err) => {
+          toast.error("fail to fetch more details including subscription ");
+          console.log(err);
+          setIsLoadingDetailsOrSubs(false);
+        });
     } else if (!user && !isLoadingSession && !isLoadingDetailsOrSubs) {
       setUserPublic(null);
       setSubscription(null);
