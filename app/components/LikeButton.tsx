@@ -15,7 +15,7 @@ interface LikeButtonProps {
 }
 
 const LikeButton = ({ songId }: LikeButtonProps) => {
-  const router = useRouter();
+  // const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const authModal = useAuthModal();
   const user = useUser();
@@ -44,7 +44,6 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
         .eq("song_id", songId)
         .single();
 
-      //  if (error) toast.error(error.message);
       if (!error && data)
         isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
     };
@@ -59,10 +58,6 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
     : isLiked
     ? AiFillHeart
     : AiOutlineHeart;
-
-  /*   const IconDecider = isCurrentSong ? currentSongIsLiked : isLiked;
-
-  const Icon: IconType = IconDecider ? AiFillHeart : AiOutlineHeart; */
 
   const handleClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -100,7 +95,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       }
     }
 
-    router.refresh();
+    // router.refresh();
   };
 
   return (
