@@ -50,7 +50,7 @@ const YourUploads = ({ songs }: Props) => {
 
   const handleClick = () => {
     if (!userContext.user) {
-      toast.success("please log in to add songs");
+      toast.success("please sign in to upload songs");
       authModal.openModal();
     } else uploadModal.openModal();
   };
