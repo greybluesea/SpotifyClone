@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -15,7 +15,7 @@ interface LikeButtonProps {
 }
 
 const LikeButton = ({ songId }: LikeButtonProps) => {
-  // const router = useRouter();
+  const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const authModal = useAuthModal();
   const user = useUser();
@@ -37,14 +37,22 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
     activeSong && setIsCurrentSong(songId === activeSong.id);
 
     const fetchLikeData = async () => {
-      const { data, error } = await supabaseClient
-        .from("liked_songs")
-        .select("*")
-        .eq("user_id", user.id)
-        .eq("song_id", songId)
-        .single();
+      let res: any;
+      isCurrentSong
+        ? (res = await supabaseClient
+            .from("liked_songs")
+            .select("*")
+            .eq("user_id", user.id)
+            .eq("song_id", activeSong!.id)
+            .single())
+        : (res = await supabaseClient
+            .from("liked_songs")
+            .select("*")
+            .eq("user_id", user.id)
+            .eq("song_id", songId)
+            .single());
 
-      if (!error && data)
+      if (!res.error && res.data)
         isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
     };
 
@@ -88,14 +96,15 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       });
 
       if (error) {
-        toast.error(error.message);
+        //  toast.error(error.message);
+        console.log(error.message);
       } else {
         isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
         toast.success("liked");
       }
     }
 
-    // router.refresh();
+    router.refresh();
   };
 
   return (

@@ -59,7 +59,7 @@ export type UserPublic = {
   } & Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
 };
 
-export type ProductWithPrice = Product & {
+export type ProductWithPrices = Product & {
   prices?: Price[];
 };
 

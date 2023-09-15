@@ -9,13 +9,14 @@ import ModalProvider from "./providers/ModalProvider";
 import ToasterProvider from "./providers/ToastProvider";
 import getSongsByUserId from "./actions/getSongsByUserId";
 import PlayerBar from "./components/PlayerBar";
-import supabaseServerComponentClient from "./actions/supabaseServerComponentClient";
+import getActiveProductsWithPrices from "./actions/getActiveProductsWithPrices";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SpotifyClone",
-  description: "Supabase + PostgreSQL + Stripe, learned from Antonio",
+  title: "SpotifyClone - (Supabase + Stripe + webhooks + useSound)",
+  description:
+    "Supabase client(auth + PostgreSQL + storage ) + Stripe + webhooks(receiving events) + SQL query + useSound + Radix, learned from Antonio",
 };
 
 export const revalidate = 0;
@@ -26,9 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const songs = await getSongsByUserId();
-  /*   const {
-    data: { user },
-  } = await supabaseServerComponentClient.auth.getUser(); */
+  const products = await getActiveProductsWithPrices();
 
   return (
     <html lang="en">
@@ -36,7 +35,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <SupabaseProvider>
           <UserContextProvider>
-            <ModalProvider />
+            <ModalProvider products={products} />
             <div className="flex w-full">
               <SideBar songs={songs} />
 

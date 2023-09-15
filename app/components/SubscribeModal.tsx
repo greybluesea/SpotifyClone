@@ -6,13 +6,13 @@ import { toast } from "react-hot-toast";
 import useSubscribeModal from "@/hooks/useSubscribeModal";
 import Modal from "./Modal";
 import Button from "./Button";
-import { Price, ProductWithPrice } from "../../types_incl_stripe";
+import { Price, ProductWithPrices } from "../../types_incl_stripe";
 import useUserContext from "@/hooks/useUserContext";
 import { postData } from "@/libsForStripe/helpers";
 import { getStripeClientForClientSide } from "@/libsForStripe/getStripePromiseFromClient";
 
 const formatPrice = (price: Price) => {
-  const priceString = new Intl.NumberFormat("en-NZ", {
+  const priceString = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: price.currency,
     minimumFractionDigits: 0,
@@ -22,7 +22,7 @@ const formatPrice = (price: Price) => {
 };
 
 interface SubscribeModalProps {
-  products: ProductWithPrice[];
+  products: ProductWithPrices[];
 }
 
 const SubscribeModal = ({ products }: SubscribeModalProps) => {
@@ -75,9 +75,10 @@ const SubscribeModal = ({ products }: SubscribeModalProps) => {
                 key={price.id}
                 onClick={() => handleCheckout(price)}
                 disabled={isloadingUserContext || isloadingPrice}
-                className="mb-4"
+                className="my-4"
+                autoFocus
               >
-                {`Subscribe for ${formatPrice(price)} a ${price.interval}`}
+                {`Subscribe for ${formatPrice(price)} per ${price.interval}`}
               </Button>
             ));
         })}
@@ -91,7 +92,7 @@ const SubscribeModal = ({ products }: SubscribeModalProps) => {
 
   return (
     <Modal
-      title="Subscribe to Enjoy Music"
+      title="Subscribe to Play Music"
       description="Music is only playable for subscribed users"
       isOpen={subscribeModal.isOpen}
       onClose={subscribeModal.closeModal}
