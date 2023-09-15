@@ -1,13 +1,15 @@
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 
-let stripePromise: Promise<Stripe | null>;
+/* let stripePromise: Promise<Stripe | null>; */
 
-export const getStripePromiseFromClient = () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(
+let stripeClientForClientSide: Stripe | null;
+
+export const getStripeClientForClientSide = async () => {
+  if (!stripeClientForClientSide) {
+    stripeClientForClientSide = await loadStripe(
       process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
     );
   }
 
-  return stripePromise;
+  return stripeClientForClientSide;
 };

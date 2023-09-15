@@ -1,3 +1,4 @@
+import { Json } from "../../type_Database";
 import { Price } from "../../types_incl_stripe";
 
 export const getHostURL = () => {
@@ -17,7 +18,7 @@ export const postData = async ({
   data,
 }: {
   url: string;
-  data?: { price: Price };
+  data: Record<string, any>;
 }) => {
   console.log("posting,", url, data);
 
@@ -29,7 +30,7 @@ export const postData = async ({
   });
 
   if (!res.ok) {
-    console.log("Error in postData", { url, data, res });
+    console.log("Error in posting data", { url, data, res });
 
     throw Error(res.statusText);
   }
