@@ -18,7 +18,7 @@ export const callApiFromClientSide = async ({
   data,
 }: {
   url: string;
-  data?: Record<string, any>;
+  data?: { price: Price };
 }) => {
   console.log("posting,", url, data);
 
