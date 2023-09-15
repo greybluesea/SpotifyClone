@@ -13,6 +13,8 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { AiFillHeart } from "react-icons/ai";
 
 import usePlayer from "@/hooks/usePlayer";
+import useUserContext from "@/hooks/useUserContext";
+
 /*
 import Button from "./Button"; */
 
@@ -23,6 +25,7 @@ const Header = (props: Props) => {
   const authModal = useAuthModal();
   const user = useUser();
   const pathname = usePathname();
+  const { subscription } = useUserContext();
 
   const player = usePlayer();
 
@@ -130,6 +133,11 @@ const Header = (props: Props) => {
                 <span>Welcome back</span>
                 <span className="text-xl">{user.email && ", "}</span>
                 <span className="text-xl">{user.email}</span>
+                {!subscription && (
+                  <span className="text-lg hidden xl:inline">
+                    , subscription is needed to play music
+                  </span>
+                )}
               </>
             )
           ) : pathname.indexOf("search") !== -1 ? (

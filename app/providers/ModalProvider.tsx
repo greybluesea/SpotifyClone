@@ -5,8 +5,8 @@ import { ProductWithPrice } from "../../types_incl_stripe";
 import Modal from "@/components/Modal";
 
 import AuthModal from "@/components/AuthModal";
-/* import SubscribeModal from "@/components/SubscribeModal";*/
 import UploadModal from "@/components/UploadModal";
+import SubscribeModal from "@/components/SubscribeModal";
 
 interface ModalProviderProps {
   products?: ProductWithPrice[];
@@ -26,16 +26,8 @@ const ModalProvider = ({ products = [] }: ModalProviderProps) => {
   return (
     <>
       <AuthModal />
-      {/* <SubscribeModal products={products} /> */}
+      <SubscribeModal products={products} />
       <UploadModal />
-      {/*  <Modal
-        isOpen={true}
-        onChange={() => {}}
-        title={"test"}
-        description="test"
-      >
-        {"test"}
-      </Modal> */}
     </>
   );
 };
