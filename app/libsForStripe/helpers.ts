@@ -13,12 +13,12 @@ export const getHostURL = () => {
   return url;
 };
 
-export const postData = async ({
+export const callApiFromClientSide = async ({
   url,
   data,
 }: {
   url: string;
-  data: Record<string, any>;
+  data?: Record<string, any>;
 }) => {
   console.log("posting,", url, data);
 

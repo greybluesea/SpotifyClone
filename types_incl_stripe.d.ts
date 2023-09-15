@@ -34,7 +34,7 @@ export type Price = {
   interval_count?: number;
   trial_period_days?: number | null;
   metadata?: Stripe.Metadata;
-  products?: Product;
+  product?: Product;
 };
 
 // type Price = Database["public"]["Tables"]["prices"]["Insert"];
@@ -78,7 +78,7 @@ export type Subscription = {
   canceled_at?: string;
   trial_start?: string;
   trial_end?: string;
-  prices?: Price[];
+  prices?: any;
 };
 
 // type Subs = Partial<Stripe.Subscription>;

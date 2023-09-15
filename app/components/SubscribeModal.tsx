@@ -8,7 +8,7 @@ import Modal from "./Modal";
 import Button from "./Button";
 import { Price, ProductWithPrices } from "../../types_incl_stripe";
 import useUserContext from "@/hooks/useUserContext";
-import { postData } from "@/libsForStripe/helpers";
+import { callApiFromClientSide } from "@/libsForStripe/helpers";
 import { getStripeClientForClientSide } from "@/libsForStripe/getStripePromiseFromClient";
 
 const formatPrice = (price: Price) => {
@@ -47,7 +47,7 @@ const SubscribeModal = ({ products }: SubscribeModalProps) => {
     }
 
     try {
-      const { sessionId } = await postData({
+      const { sessionId } = await callApiFromClientSide({
         url: "/api/create-checkout-session",
         data: { price },
       });
@@ -92,7 +92,7 @@ const SubscribeModal = ({ products }: SubscribeModalProps) => {
 
   return (
     <Modal
-      title="Subscribe to Play Music"
+      title="Subscribe to plan: Play Music"
       description="Music is only playable for subscribed users"
       isOpen={subscribeModal.isOpen}
       onClose={subscribeModal.closeModal}

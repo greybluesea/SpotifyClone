@@ -57,7 +57,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
     };
 
     fetchLikeData();
-  }, [songId, user, activeSong]);
+  }, [songId, user, activeSong, isCurrentSong]);
 
   const Icon: IconType = isCurrentSong
     ? currentSongIsLiked
