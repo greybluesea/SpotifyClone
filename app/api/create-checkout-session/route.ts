@@ -1,4 +1,3 @@
-//import supabaseRouteHandlerClient from "@/actions/supabaseRouteHandlerClient";
 import { getHostURL } from "@/libsForStripe/helpers";
 import { stripeClient } from "@/libsForStripe/stripe";
 import { retrieveCustomerIdOrCreateInStripe } from "@/libsForStripe/supabaseClientForStripe";
