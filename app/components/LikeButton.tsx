@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -8,6 +8,7 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { IconType } from "react-icons";
+import usePlayer from "@/hooks/usePlayer";
 
 interface LikeButtonProps {
   songId: string;
@@ -19,9 +20,21 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
   const authModal = useAuthModal();
   const user = useUser();
   const [isLiked, setIsLiked] = useState(false);
+  const activeSong = usePlayer((state) => state.activeSong);
+  const currentSongIsLiked = usePlayer((state) => state.currentSongIsLiked);
+  const setCurrentSongIsLiked = usePlayer(
+    (state) => state.setCurrentSongIsLiked
+  );
+  const [isCurrentSong, setIsCurrentSong] = useState(false);
 
   useEffect(() => {
-    if (!user) return setIsLiked(false);
+    if (!user) {
+      setIsLiked(false);
+      setIsCurrentSong(false);
+      return;
+    }
+
+    activeSong && setIsCurrentSong(songId === activeSong.id);
 
     const fetchLikeData = async () => {
       const { data, error } = await supabaseClient
@@ -32,13 +45,24 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
         .single();
 
       //  if (error) toast.error(error.message);
-      if (!error && data) setIsLiked(true);
+      if (!error && data)
+        isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
     };
 
     fetchLikeData();
-  }, [songId, user]);
+  }, [songId, user, activeSong]);
 
-  const Icon: IconType = isLiked ? AiFillHeart : AiOutlineHeart;
+  const Icon: IconType = isCurrentSong
+    ? currentSongIsLiked
+      ? AiFillHeart
+      : AiOutlineHeart
+    : isLiked
+    ? AiFillHeart
+    : AiOutlineHeart;
+
+  /*   const IconDecider = isCurrentSong ? currentSongIsLiked : isLiked;
+
+  const Icon: IconType = IconDecider ? AiFillHeart : AiOutlineHeart; */
 
   const handleClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -49,7 +73,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       return authModal.openModal();
     }
 
-    if (isLiked) {
+    if (isCurrentSong ? currentSongIsLiked : isLiked) {
       const { error } = await supabaseClient
         .from("liked_songs")
         .delete()
@@ -59,9 +83,8 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       if (error) {
         toast.error(error.message);
       } else {
-        setIsLiked(false);
+        isCurrentSong ? setCurrentSongIsLiked(false) : setIsLiked(false);
         toast.success("unliked");
-        router.refresh();
       }
     } else {
       const { error } = await supabaseClient.from("liked_songs").insert({
@@ -72,9 +95,8 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       if (error) {
         toast.error(error.message);
       } else {
-        setIsLiked(true);
+        isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
         toast.success("liked");
-        router.refresh();
       }
     }
 
@@ -83,7 +105,11 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
 
   return (
     <button className="hover-opaque" onClick={handleClick}>
-      <Icon color={isLiked ? "red" : "white"} size={25} />
+      {isCurrentSong ? (
+        <Icon color={currentSongIsLiked ? "red" : "white"} size={25} />
+      ) : (
+        <Icon color={isLiked ? "red" : "white"} size={25} />
+      )}
     </button>
   );
 };

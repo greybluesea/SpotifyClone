@@ -15,6 +15,7 @@ import Slider from "./Slider";
 import useSound from "use-sound";
 import MediaItem from "./MediaItem";
 import { IconType } from "react-icons";
+import LikeButton from "./LikeButton";
 
 interface CurrentSongInPlayerProps {
   song: Song;
@@ -191,7 +192,10 @@ const CurrentSongInPlayer = ({ song, songUrl }: CurrentSongInPlayerProps) => {
         />
       </section>
 
-      <section className="hidden sm:flex w-full justify-end pr-2">
+      <section className="hidden sm:flex w-full justify-end pr-2 items-center">
+        <div className="hidden sm:flex sm:items-center  mr-8">
+          <LikeButton songId={song.id} />
+        </div>
         <div className="flex items-center gap-x-2 w-[120px]">
           <VolumeIcon
             onClick={toggleMute}

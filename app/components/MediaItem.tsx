@@ -42,7 +42,9 @@ const MediaItem = ({ song }: { song: Song }) => {
         <p className="text-PRIMARY truncate ">{song.title}</p>
         <p className="mt-1 text-NEUTRAL text-sm truncate">By {song.author}</p>
       </div>
-      {/*  <LikeButton songId={song.id} /> */}
+      <div className="flex items-center sm:hidden ">
+        <LikeButton songId={song.id} />
+      </div>
     </div>
   );
 };
