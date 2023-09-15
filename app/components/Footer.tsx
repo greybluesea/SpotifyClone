@@ -5,7 +5,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className=" w-full mb-2 flex flex-col h-full justify-end">
+    <footer className=" w-full mb-2 hidden 2xl:flex flex-col h-full justify-end">
       <ul className="hidden  sm:flex sm:flex-col mt-auto  mx-auto  justify-end items-center bg-transparent space-y-1 px-7 py-5 rounded-xl w-full">
         <li>Supabase ( auth + PostgreSQL + storage )</li>
         <li>Stripe + webhooks (receiving events)</li>

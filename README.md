@@ -1,7 +1,11 @@
-## SpotifyClone
+## SpotifyClone - (Supabase + Stripe + webhooks + useSound)
 
-Supabase + PostgreSQL + Stripe + NextAuth email signin,
+Supabase client(auth + PostgreSQL + storage )
+Stripe + webhooks (receiving events)
+schema change via SQL query
+Radix UI + useSound
 learned from Antonio
+powered by greybluesea
 
 ```bash
 npm run dev
