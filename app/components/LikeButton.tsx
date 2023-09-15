@@ -54,6 +54,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
 
       if (!res.error && res.data)
         isCurrentSong ? setCurrentSongIsLiked(true) : setIsLiked(true);
+      else isCurrentSong ? setCurrentSongIsLiked(false) : setIsLiked(false);
     };
 
     fetchLikeData();
