@@ -12,7 +12,7 @@ export const supabaseClientForStripe = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const upsertProductExcerpt = async (productStripe: Stripe.Product) => {
+const upsertProductInSupabase = async (productStripe: Stripe.Product) => {
   const productExcerpt: Product = {
     id: productStripe.id,
     active: productStripe.active,
@@ -29,7 +29,16 @@ const upsertProductExcerpt = async (productStripe: Stripe.Product) => {
   console.log(`product inserted or updated: ${productStripe.id}`);
 };
 
-const upsertPriceExcerpt = async (priceStripe: Stripe.Price) => {
+const deleteProductInSupabase = async (productStripe: Stripe.Product) => {
+  const { error } = await supabaseClientForStripe
+    .from("products")
+    .delete()
+    .eq("id", productStripe.id);
+  if (error) console.log(error);
+  else console.log(`product deleted: ${productStripe.id}`);
+};
+
+const upsertPriceInSupabase = async (priceStripe: Stripe.Price) => {
   const priceExcerpt: Price = {
     id: priceStripe.id,
     product_id:
@@ -53,30 +62,41 @@ const upsertPriceExcerpt = async (priceStripe: Stripe.Price) => {
   console.log(`price inserted or updated: ${priceStripe.id}`);
 };
 
-const retrieveOrCreateCustomerIdInStripe = async (
-  uuid: string,
+const deletePriceInSupabase = async (priceStripe: Stripe.Price) => {
+  const { error } = await supabaseClientForStripe
+    .from("prices")
+    .delete()
+    .eq("id", priceStripe.id);
+  if (error) console.log(error);
+  else console.log(`price deleted: ${priceStripe.id}`);
+};
+
+const retrieveCustomerIdOrCreateInStripe = async (
+  userId: string,
   email?: string
 ) => {
   const { data: customerData, error } = await supabaseClientForStripe
     .from("customers")
     .select("stripe_customer_id")
-    .eq("id", uuid)
+    .eq("id", userId)
     .single();
   if (error || !customerData?.stripe_customer_id) {
-    const customerData: { metadata: { supabaseUUID: string }; email?: string } =
-      {
-        metadata: {
-          supabaseUUID: uuid,
-        },
-      };
+    const customerData: {
+      metadata: { supabaseUserId: string };
+      email?: string;
+    } = {
+      metadata: {
+        supabaseUserId: userId,
+      },
+    };
     if (email) customerData.email = email;
 
     const customerInStripe = await stripeClient.customers.create(customerData);
     const { error: supabaseError } = await supabaseClientForStripe
       .from("customers")
-      .insert([{ id: uuid, stripe_customer_id: customerInStripe.id }]);
+      .insert([{ id: userId, stripe_customer_id: customerInStripe.id }]);
     if (supabaseError) throw supabaseError;
-    console.log(`New customer created(inserted) for user ${uuid}.`);
+    console.log(`New customer created(inserted) for user ${userId}.`);
     return customerInStripe.id;
   }
   return customerData.stripe_customer_id;
@@ -180,8 +200,10 @@ const updateSubsStatusChangeFromStripe = async (
 };
 
 export {
-  upsertProductExcerpt,
-  upsertPriceExcerpt,
-  retrieveOrCreateCustomerIdInStripe,
+  upsertProductInSupabase,
+  deleteProductInSupabase,
+  upsertPriceInSupabase,
+  deletePriceInSupabase,
+  retrieveCustomerIdOrCreateInStripe,
   updateSubsStatusChangeFromStripe,
 };

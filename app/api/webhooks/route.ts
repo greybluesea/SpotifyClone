@@ -4,16 +4,20 @@ import { headers } from "next/headers";
 
 import { stripeClient } from "@/libsForStripe/stripe";
 import {
+  deletePriceInSupabase,
+  deleteProductInSupabase,
   updateSubsStatusChangeFromStripe,
-  upsertPriceExcerpt,
-  upsertProductExcerpt,
+  upsertPriceInSupabase,
+  upsertProductInSupabase,
 } from "@/libsForStripe/supabaseClientForStripe";
 
 const relevantEvents = new Set([
   "product.created",
   "product.updated",
+  "product.deleted",
   "price.created",
   "price.updated",
+  "price.deleted",
   "checkout.session.completed",
   "customer.subscription.created",
   "customer.subscription.updated",
@@ -25,8 +29,8 @@ export async function POST(request: Request) {
   const signature = headers().get("stripe-signature");
 
   const webhookSecret =
-    /*  process.env.STRIPE_WEBHOOK_SECRET_LIVE ?? */ process.env
-      .STRIPE_WEBHOOK_SECRET;
+    process.env.STRIPE_WEBHOOK_LOCAL_SECRET ??
+    process.env.STRIPE_WEBHOOK_SECRET;
   let event: Stripe.Event;
 
   try {
@@ -40,17 +44,24 @@ export async function POST(request: Request) {
     console.log(`❌ Error message: ${err.message}`);
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
+  console.log(event.data);
 
   if (relevantEvents.has(event.type)) {
     try {
       switch (event.type) {
         case "product.created":
         case "product.updated":
-          await upsertProductExcerpt(event.data.object as Stripe.Product);
+          await upsertProductInSupabase(event.data.object as Stripe.Product);
+          break;
+        case "product.deleted":
+          await deleteProductInSupabase(event.data.object as Stripe.Product);
           break;
         case "price.created":
         case "price.updated":
-          await upsertPriceExcerpt(event.data.object as Stripe.Price);
+          await upsertPriceInSupabase(event.data.object as Stripe.Price);
+          break;
+        case "price.deleted":
+          await deletePriceInSupabase(event.data.object as Stripe.Price);
           break;
         case "customer.subscription.created":
         case "customer.subscription.updated":
