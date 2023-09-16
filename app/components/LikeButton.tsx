@@ -31,6 +31,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
     if (!user) {
       setIsLiked(false);
       setIsCurrentSong(false);
+      setCurrentSongIsLiked(false);
       return;
     }
 
