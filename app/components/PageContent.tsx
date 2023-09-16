@@ -20,7 +20,7 @@ const PageContent = ({ songs }: PageContentProps) => {
 
   useEffect(() => {
     user && subscription && setSongs(songs);
-  }, [user, subscription]);
+  }, [user, subscription, songs]);
 
   if (songs.length === 0) {
     return <div className=" text-NEUTRAL">No songs available.</div>;
