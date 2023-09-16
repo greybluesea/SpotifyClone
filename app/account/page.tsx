@@ -50,8 +50,8 @@ const AccountContent = () => {
             You are currently on the
             <b> {subscription?.prices?.products?.name} </b>
             plan, which {subscription.cancel_at_period_end
-              ? "renews"
-              : "ends"}{" "}
+              ? "ends"
+              : "renews"}{" "}
             on{" "}
             {new Date(subscription?.current_period_end).toLocaleDateString(
               "en-NZ",
