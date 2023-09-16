@@ -49,7 +49,10 @@ const AccountContent = () => {
           <p className="text-2xl">
             You are currently on the
             <b> {subscription?.prices?.products?.name} </b>
-            plan, which {subscription ? "renews" : "ends"} on{" "}
+            plan, which {subscription.cancel_at_period_end
+              ? "renews"
+              : "ends"}{" "}
+            on{" "}
             {new Date(subscription?.current_period_end).toLocaleDateString(
               "en-NZ",
               { day: "numeric", month: "long", year: "numeric" }
