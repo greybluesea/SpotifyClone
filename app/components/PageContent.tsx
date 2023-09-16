@@ -3,13 +3,17 @@
 import usePutSongsIntoPlayer from "@/hooks/usePutSongsIntoPlayer";
 import { Song } from "../../types_incl_stripe";
 import SongItem from "./SongItem";
+import usePlayer from "@/hooks/usePlayer";
 
 interface PageContentProps {
   songs: Song[];
 }
 
 const PageContent = ({ songs }: PageContentProps) => {
+  const setSongs = usePlayer((state) => state.setSongs);
   const putSongIntoPlayer = usePutSongsIntoPlayer(songs);
+
+  setSongs(songs);
 
   if (songs.length === 0) {
     return <div className=" text-NEUTRAL">No songs available.</div>;
