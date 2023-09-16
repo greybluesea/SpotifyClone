@@ -5,6 +5,8 @@ import { Song } from "../../types_incl_stripe";
 import SongItem from "./SongItem";
 import usePlayer from "@/hooks/usePlayer";
 import { useUser } from "@supabase/auth-helpers-react";
+import useUserContext from "@/hooks/useUserContext";
+import { useEffect } from "react";
 
 interface PageContentProps {
   songs: Song[];
@@ -13,9 +15,12 @@ interface PageContentProps {
 const PageContent = ({ songs }: PageContentProps) => {
   const setSongs = usePlayer((state) => state.setSongs);
   const user = useUser();
+  const { subscription } = useUserContext();
   const putSongIntoPlayer = usePutSongsIntoPlayer(songs);
 
-  user && setSongs(songs);
+  useEffect(() => {
+    user && subscription && setSongs(songs);
+  }, [user, subscription]);
 
   if (songs.length === 0) {
     return <div className=" text-NEUTRAL">No songs available.</div>;
