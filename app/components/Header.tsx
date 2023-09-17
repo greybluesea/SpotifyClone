@@ -41,7 +41,7 @@ const Header = (props: Props) => {
       toast.success("Logged out!", { id: "1" });
     }
 
-    router.refresh();
+    setTimeout(() => router.refresh(), 200);
   };
 
   return (

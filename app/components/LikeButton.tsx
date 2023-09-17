@@ -34,7 +34,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       setCurrentSongIsLiked(false);
       // router.push("/");
       setTimeout(() => {
-        router.push("/");
+        router.refresh();
       }, 200);
       return;
     }
@@ -63,7 +63,7 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
     };
 
     fetchLikeData();
-  }, [songId, user, activeSong, isCurrentSong]);
+  }, [songId, user, activeSong, isCurrentSong, isLiked, currentSongIsLiked]);
 
   const Icon: IconType = isCurrentSong
     ? currentSongIsLiked
