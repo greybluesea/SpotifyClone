@@ -32,7 +32,9 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       setIsLiked(false);
       setIsCurrentSong(false);
       setCurrentSongIsLiked(false);
-      router.refresh();
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
       return;
     }
 
