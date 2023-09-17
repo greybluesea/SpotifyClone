@@ -28,7 +28,8 @@ const SideBar = ({ songs }: Props) => {
         active:
           pathname.indexOf("search") === -1 &&
           pathname.indexOf("likedsongs") === -1 &&
-          pathname.indexOf("youruploads") === -1,
+          pathname.indexOf("youruploads") === -1 &&
+          pathname.indexOf("account") === -1,
       },
       {
         icon: BiSearch,
