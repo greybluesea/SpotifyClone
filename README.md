@@ -8,3 +8,4 @@
 
 Youtube: [https://youtu.be/UfTAv3BbFi0](https://youtu.be/UfTAv3BbFi0)
 ![screen](/thumbnail.png)
+![lighthouse](/lighthouse_score.jpg)
